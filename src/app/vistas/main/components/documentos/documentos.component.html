@@ -64,7 +64,7 @@
 
               <span class="dropzone__title">Documentos cargados</span>
 
-              <div class="create__folder">
+              <div *ngIf="!isThirdParty || thirdPartyFolders" class="create__folder">
                 <div>
                   <input type="checkbox" [(ngModel)]="selectedCreateFolder">
                   <span class="create__folder--label">Crear carpeta</span>

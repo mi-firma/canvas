@@ -21,7 +21,7 @@ export class DocumentosComponent implements OnInit, OnDestroy {
   isThirdParty = localStorage.getItem('isThirdParty') == 'true';
   thirdPartyLogoUrl = localStorage.getItem('thirdPartyLogoUrl');
   thirdPartyColor = localStorage.getItem('thirdPartyColor');
-  thirdPartyMessage = localStorage.getItem('thirdPartyMessage');
+  thirdPartyFolders = localStorage.getItem('thirdPartyFolders') == 'true';
   // Maximum size allowed per document
   maxBytes = 20866662.4;
   scriptsLoaded = false;
