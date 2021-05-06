@@ -1,0 +1,28 @@
+.payment__container {
+  padding: 20px 20%;
+  text-align: center;
+}
+
+.fallo__action .icon {
+  color: red;
+  font-size: 65px;
+}
+
+.fallo__action {
+  margin: 5% 0;
+}
+
+.failure__text {
+  padding: 30px 0;
+  border-bottom: 1px solid #d5d5d5;
+}
+
+.button__done {
+  background: #9E267D;
+  border: solid 1px #9e267d;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #FFFFFF;
+  padding: 5px 20px;
+  margin: auto;
+}

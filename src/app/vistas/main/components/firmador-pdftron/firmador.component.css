@@ -1,0 +1,463 @@
+:root {
+    --scrollbarBG: transparent;
+    --thumbBG: rgba(200, 200, 200, 1);
+  }
+
+  * {
+    box-sizing: border-box;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+  }
+
+   *::-webkit-scrollbar {
+    width: 10px;
+  }
+  *::-webkit-scrollbar-track {
+    background: var(--scrollbarBG);
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--thumbBG) ;
+    border-radius: 6px;
+    border: 2px solid var(--scrollbarBG);
+  }
+
+.file__content {
+    display: flex;
+    flex-direction: no-wrap;
+    background: #ffffff;
+    z-index: 25;
+    margin-top: -5%;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: hidden;
+}
+
+.acordion-docs{
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.acordion-docs .card-header {
+    border-top: 1px solid rgba(0,0,0,.12);
+    background-color: #CECECE ;
+    text-transform: none;
+    font-size: 16px ;
+    font-weight: 500 ;
+}
+
+.image-arrow{
+    width: 10%;
+    text-align: right;
+    font-size: 16px;
+}
+
+.doc-name{
+    width: 90%;
+    text-align: left;
+    word-break: break-all;
+}
+
+.acordion-docs .btn {
+    padding: 0;
+    display: flex;
+    width: 100%;
+    text-transform: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.btn-use {
+    width: fit-content;
+    height: 30px;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid #706F70;
+    color:#707070;
+    border-radius: 5px;
+    background:#FFFFFF;
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+.display-message:hover ~ .alt__container .alt__message {
+    opacity: 1;
+    transition: all .3s ease-in-out;
+}
+
+.display-message{
+    display: flex;
+    margin-left: 10px;
+}
+
+.alt__message {
+    position: absolute;
+    top: -20px;
+    width: max-content;
+    left: -90px;
+    text-align: center;
+    padding: 3px;
+    border-radius: 5px;
+    color: #fff;
+    background: #707070;
+    font-size: 10px;
+    opacity: 0;
+    transition: all .3s ease-in-out;
+}
+
+.button-add {
+    width: fit-content;
+    height: 20px;
+    cursor: pointer;
+    text-align: center;
+    border: solid 1px #9e267d;
+    color: #ffffff;
+    border-radius: 5px;
+    background: #9e267d;
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+
+.alt__container {
+    position: relative;
+    font-weight: normal;
+}
+
+.delete-icon{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border: none;
+    background-color: #FFFFFF;
+    background: transparent;
+}
+
+.signer__menu {
+    height: calc(100vh - 65px);
+    width: 20%;
+    background-color: #F4F4F4;
+    z-index: 20;
+    box-shadow: 1px 0px 5px 0px rgba(0,0,0,0.3);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.file__preview {
+    width: 100%;
+    padding: 0 20%;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.file__thumbnail {
+    border: 2px solid #2aa4f1;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.file__name {
+    font-size: 18px;
+    word-break: break-word;
+    font-weight: 600;
+}
+
+.signers__header {
+    padding: 5px 20px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.selected__signers {
+    width: 100%;
+    padding-bottom: 10%;
+}
+
+.extra-tools{
+    display: flex;
+    padding: 5px 20px;
+    margin-bottom: 10px;
+}
+
+.input-template{
+    height: 30px;
+    padding: 5px;
+    background-color: #FFFFFF;
+}
+
+.text-tool{
+    margin-left: 5px;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.signatures__list {
+    height: fit-content;
+    width: 150px;
+    position: fixed;
+    z-index: 40;
+    top: 130px;
+    right: 45px;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #000000;
+    padding: 10px;
+    text-align: center;
+    -webkit-box-shadow: 2px 3px 4px 2px rgba(0,0,0,0.21);
+    -moz-box-shadow: 2px 3px 4px 2px rgba(0,0,0,0.21);
+    box-shadow: 2px 3px 4px 2px rgba(0,0,0,0.21);
+}
+
+.signatures__list__hidden {
+    display: none;
+}
+
+.tool__name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4b4b4b;
+    margin-bottom: 0;
+    margin-left: 15px;
+    display: block;
+    line-height: 2;
+}
+
+.header__subtitle--pdftron {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4b4b4b;
+    align-self: center;
+    margin-left: 5px;
+    display: block;
+}
+
+.header__description {
+    font-size: 10px;
+    color: #4b4b4b;
+}
+
+.signer__options {
+    padding: 0 20px;
+    margin: 5px 0;
+}
+
+.h280 {
+    height: 280px;
+}
+
+.signer__item {
+    display: flex;
+    padding: 20px 10px;
+    border: none;
+    border-radius: 5px;
+    z-index: 200;
+    text-align: left;
+    font-size: 10px;
+    color: #4b4b4b;
+    font-weight: 300;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.signer__item i{
+    font-size: 16px;
+}
+
+.signer__options .draggable {
+    margin-bottom: 5px;
+    width: 17%;
+    position: absolute;
+}
+
+.file__wrapper {
+    margin: 0;
+    width: 80%;
+}
+
+.header-menu {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 60px;
+    padding: 10px 5%;
+}
+
+.bg-white {
+    height: calc(100vh - 160px);
+    height: -webkit-calc(100vh - 160px);
+    height: -moz-calc(100vh - 160px);
+}
+
+#scrollView {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-grow: 1;
+    overflow: auto;
+    box-shadow:  0 0 10px 3px #ccc;
+    z-index: 1;
+  }
+
+#viewer {
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.pageContainer {
+    z-index: 3;
+    border: 1px solid rgba(10, 10, 10, .1);
+    position: relative;
+  }
+
+.signer__mobile__button {
+    display: none;
+    border: none;
+    font-size: 13px;
+}
+
+    .signer__mobile__button .icon {
+        font-size: 6px;
+        color: #707070;
+        margin-right: 10px;
+    }
+
+.btn-help {
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+    float: right;
+    border-radius: 5px;
+    background-color: #DDF9F4;
+}
+
+.cursive-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 32px;
+}
+
+.signature-pdf {
+    position: absolute !important;
+    z-index: 20;
+}
+
+    .signature-pdf img {
+        width: 100%;
+        height: 100%;
+    }
+
+.icon-sign-blue {
+    font-size: 30px;
+    color: #1ca8ff;
+}
+
+.menu__top-left {
+    margin-left: 10px;
+    float: left;
+    margin-top: 5px;
+}
+
+.sign--options {
+    display: flex;
+}
+
+.container__file--preview {
+  width: 100%;
+}
+
+.file__name--collapse {
+  padding: 5px 10px 5px 15px;
+  background-color: #CECECE;
+  color: #4B4B4B;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #9B9B9B;
+}
+
+.file__text--collapse {
+  font-size: 13px;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.icon__rotate--arrow {
+  transform: rotate(180deg);
+}
+
+
+@media (max-width: 640px) {
+    .file__content {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    .signer__mobile__button {
+        display: block;
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin: 8px auto;
+        box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.2);
+        text-align: left;
+        background-color: #F4E6F0;
+        color: #707070;
+    }
+
+    .bg-white{
+        height: calc(100vh - 245px);
+    }
+
+    .header-menu {
+        height: 80px;
+    }
+
+    .signer__menu {
+        height: 0;
+        width: 100%;
+        padding: 0;
+        -webkit-transition: all 0.25s ease-in-out;
+        -moz-transition: all 0.25s ease-in-out;
+        -o-transition: all 0.25s ease-in-out;
+        transition: all 0.25s ease-in-out;
+    }
+
+        .signer__menu.opened {
+            height: auto;
+        }
+
+    .file__wrapper {
+        width: 100%;
+        padding: 10px 10px 0;
+    }
+
+    .file__preview {
+        display: none;
+    }
+
+    .signatures__list {
+        top: 195px;
+        left: 10px;
+    }
+
+    .signature-pdf-3 {
+        height: 40px;
+    }
+
+    .signature-pdf-2 {
+        width: 150px;
+        height: 40px;
+    }
+
+    .cursive-text {
+        font-size: 14px;
+    }
+
+    .draggable{
+        display: none;
+    }
+}

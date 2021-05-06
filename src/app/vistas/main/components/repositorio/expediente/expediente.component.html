@@ -1,0 +1,195 @@
+<div class="document__file">
+  <div class="document__header">
+    <h3 class="document__title">
+      Expediente
+    </h3>
+
+    <div class="header__actions">
+      <a (click)="generarPDF()" class="document__action check">
+        <i class="icon-download-4"></i>
+      </a>
+      <button [routerLink]="'/main/repositorio'"
+              id="btnCerrar"
+              class="document__action back">
+        Volver
+      </button>
+    </div>
+  </div>
+
+  <div id="detailprint" [ngClass]="(printDetail === true) ? 'print__detail' : ''">
+
+  <div class="document__info--details">
+    <div class="document__items--top">
+      <div class="item__detail">
+        <span class="item__title">Nombre del documento:</span>
+        <span class="item__text">{{documents.traceDocumentName}}</span>
+      </div>
+      <div class="item__detail">
+        <span class="item__title">Estado:</span>
+        <span class="item__text">{{expediente.stateDocumentProcess}}</span>
+      </div>
+    </div>
+
+    <div class="document__info">
+
+      <div class="document__items--col">
+        <div class="item__detail">
+          <span class="item__title">Total Firmantes:</span>
+          <span class="item__text">{{totalFirmantes()}}</span>
+        </div>
+        <div class="item__detail">
+          <span class="item__title">Firma Digital:</span>
+          <span class="item__text">{{documents.traceDocumentDigitalSignature && 'SI' || 'NO'}}</span>
+        </div>
+        <div class="item__detail" *ngIf="expediente.cosmosId !== null">
+          <span class="item__title">Cantidad de Páginas:</span>
+          <span class="item__text">{{documents.traceDocumentPages}}</span>
+        </div>
+        <div class="item__detail">
+          <span class="item__title">Estampa de Tiempo:</span>
+          <span class="item__text">{{documents.traceDocumentTimeStamp && 'SI' || 'NO'}}</span>
+        </div>
+      </div>
+
+      <div class="document__items--col">
+        <div class="item__detail">
+          <span class="item__title">Total Firmas:</span>
+          <span class="item__text">{{ totalFirmasDocumento() }}</span>
+        </div>
+        <div class="item__detail" *ngIf="expediente.certifier !== null">
+          <span class="item__title">Titular FD:</span>
+          <span class="item__text">{{expediente.certifier}}</span>
+        </div>
+        <div class="item__detail">
+          <span class="item__title">ID Documento:</span>
+          <span class="item__text">{{expediente.documentId}}</span>
+        </div>
+        <div class="item__detail" *ngIf="expediente.cosmosId !== null">
+          <span class="item__title">Zona Horaria:</span>
+          <span class="item__text">{{expediente.timeZone}}</span>
+        </div>
+      </div>
+      <div class="document__items--col">
+        <div class="item__detail">
+          <span class="item__title">Originador:</span>
+          <span class="item__text">{{expediente.userName}}</span>
+        </div>
+        <div class="item__detail">
+          <span class="item__title">Correo:</span>
+          <span class="item__text">{{expediente.user}}</span>
+        </div>
+        <div class="item__detail" *ngIf="expediente.cosmosId !== null">
+          <span class="item__title">IP:</span>
+          <span class="item__text">{{expediente.ipAddress}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-collapse mt-20">
+    <p class="text-collapse">Eventos de Firma:</p>
+    <span *ngIf="true" class="icon-down-arrow"></span>
+    <span *ngIf="false" class="icon-down-arrow icon__rotate--arrow"></span>
+  </div>
+
+  <div class="menu-collapse mt-20" (click)="collapseMenu()">
+    <p class="text-collapse">Eventos de Firma OTP:</p>
+    <span *ngIf="!menuDesplegado" class="icon-down-arrow"></span>
+    <span *ngIf="menuDesplegado" class="icon-down-arrow icon__rotate--arrow"></span>
+  </div>
+
+  <div *ngIf="menuDesplegado">
+    <div class="document__sign--info mt-20" *ngFor="let signer of signers">
+     <div class="document__container--sign">
+       <div class="document__sign--col">
+
+         <div class="item__detail--first">
+           <span class="item__title">{{signer.userName}}</span>
+           <div class="item__detail--sign" *ngIf="expediente.cosmosId !== null">
+             <span class="item__title">IP:</span>
+             <span class="item__text">{{signer.ipAddress}}</span>
+           </div>
+         </div>
+
+         <div class="item__detail--second">
+           <span class="item__text">{{signer.signerUser}}</span>
+           <div class="item__detail" *ngIf="expediente.cosmosId !== null">
+            <span class="item__title">OTP:</span>
+            <span class="item__text">{{signer.otp}}</span>
+          </div>
+         </div>
+
+         <div class="item__detail--second">
+          <div class="item__detail">
+           <span class="item__title">Número Firmas:</span>
+           <span class="item__text">{{signer.signaturesNumber}}</span>
+         </div>
+        </div>
+
+       </div>
+
+       <div class="item__detail--third">
+        <div class="item__detail">
+          <span class="item__title">ID Firma:</span>
+          <span class="item__text">{{signer.userProcessId}}</span>
+        </div>
+      </div>
+     </div>
+
+      <div class="document__container--sign">
+      <div class="document__sign--col">
+        <div class="detail__time--title">
+          <span class="item__title">Trazabilidad</span>
+        </div>
+        <div class="item__detail--time">
+          <div class="detail__time">
+            <span class="item__text mr-10">Enviado:</span>
+            <span class="item__text">{{signer.dateRequest | date:'dd/MM/yyyy h:mm:ss a'}}</span>
+          </div>
+          <div class="detail__time" *ngIf="expediente.cosmosId !== null">
+            <span class="item__text mr-10">Visto primera vez:</span>
+            <span class="item__text" *ngIf="signer.dateOpenRequest !== null">{{signer.dateOpenRequest | date:'dd/MM/yyyy h:mm:ss a'}}</span>
+            <span class="item__text" *ngIf="signer.dateOpenRequest === null">{{signer.dateDocumentSignature | date:'dd/MM/yyyy h:mm:ss a'}}</span>
+          </div>
+          <div class="detail__time" *ngIf="expediente.cosmosId !== null">
+            <span class="item__text mr-10">Visto última vez:</span>
+            <span class="item__text" *ngIf="signer.dateReOpenRequest !== null">{{signer.dateReOpenRequest | date:'dd/MM/yyyy h:mm:ss a'}}</span>
+            <span class="item__text" *ngIf="signer.dateReOpenRequest === null">{{signer.dateDocumentSignature | date:'dd/MM/yyyy h:mm:ss a'}}</span>
+          </div>
+          <div class="detail__time" *ngIf="signer.available === true || signer.available === null">
+            <span class="item__text mr-10">Firmado:</span>
+            <span class="item__text">{{signer.dateDocumentSignature | date:'dd/MM/yyyy h:mm:ss a'}}</span>
+          </div>
+          <div class="detail__time" *ngIf="signer.available === false">
+            <span class="item__title mr-10">Usuario eliminado</span>
+          </div>
+          <div class="detail__time" *ngIf="signer.rejectDateTime !== null">
+            <span class="item__title mr-10">Solicitud Rechazada</span>
+          </div>
+          <div class="detail__time" *ngIf="signer.stateUserProcess === 'Expirado'">
+            <span class="item__title mr-10">Solicitud Expirada</span>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div [className]="!signer.mostrarFirma ? 'not__image--sign': 'document__sign--col detail__sign detail__img'">
+         <div class="detail__img--container" *ngIf="signer.mostrarFirma">
+           <img class="firma" [className]="signer.graphExtesion === 'jpg' ? 'firma__jpg': 'firma'" width="250" src="{{signer.firma}}" alt="">
+           <img class="sello__detail" width="250" src="{{signer.sello}}" alt="">
+         </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="menu-collapse mt-20">
+    <p class="text-collapse">Eventos de Firma Facial:</p>
+    <span *ngIf="true" class="icon-down-arrow"></span>
+    <span *ngIf="false" class="icon-down-arrow icon__rotate--arrow"></span>
+  </div>
+
+
+  </div>
+
+</div>

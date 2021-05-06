@@ -1,0 +1,78 @@
+.edit__button {
+    color: #707070;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.edit__icon {
+    font-size: 20px;
+}
+
+.address__input {
+    font-size: 12px;
+    margin: 10px 0;
+}
+
+.receipt__title {
+    font-weight: 600;
+}
+
+.address-form {
+    display: flex;
+}
+
+.address-fav {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.address__detail {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.address-action {
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.form__row {
+    display: flex;
+    margin: 10px 0;
+}
+
+.form__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin: 15px 0;
+}
+
+.form__button {
+    margin: 0 10px;
+    font-size: 15px;
+    padding: 6px 25px 7px;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 500;
+    height: auto;
+    width: auto;
+    background-color: #9e267d;
+    border: 1px solid #9e267d;
+    cursor: pointer;
+  }
+  
+    .form__button:disabled {
+      border: solid 1px #e6e6e6;
+      background-color: #e6e6e6;
+      cursor: not-allowed;
+    }
+  
+    .form__button:last-child {
+      margin-right: 0;
+    }
+  
+    .form__button--cancel {
+        color: #7c7c7c;
+        background-color: #fff;
+        border: 1px solid #7c7c7c;
+    }

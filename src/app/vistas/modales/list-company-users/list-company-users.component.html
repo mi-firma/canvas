@@ -1,0 +1,24 @@
+<div (click)="close()" class="close__button">
+    <i class="icon icon-error"></i>
+</div>
+<div class="l-folder_section">
+    <h2 class="l-folder_title">Invitar a tu equipo</h2>
+    <form class="signers__form mt-20" #formulario ngNativeValidate>
+        <div class="dragula-box" *ngFor="let user of users; let i = index">
+          <input class="input__name" required [(ngModel)]="user.nombre" type="text" placeholder="Nombre" maxlength="30"
+                 name={{user.nombre}} id={{user.nombre}} [ngModelOptions]="{standalone: true}">
+  
+          <input class="input__email" required [(ngModel)]="user.correo" type="email" maxlength="50"
+                 placeholder="Correo electrónico" name={{user.correo}} id={{user.correo}} [ngModelOptions]="{standalone: true}">
+  
+          <div class="button__bin" (click)="eliminarCopia(i)"><i class="icon-bin"></i></div>
+        </div>
+    </form>
+    <button class="add-button"
+          (click)="agregarCopia()">
+    <span class="icon icon-add"></span> Agregar Usuario
+    </button>
+    <div class="button-invite">
+      <button class="continue-btn-3" (click)="validate()">Invitar</button>
+    </div>
+</div>

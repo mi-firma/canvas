@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <!-- Google Tag Manager -->
+
+  <script>
+    const dom = window.location.host
+    if(dom == "app.mifirma.co"){
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+          'gtm.start':
+
+            new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+
+      })(window, document, 'script', 'dataLayer', 'GTM-NP55LXD');
+    }
+</script>
+
+  <!-- End Google Tag Manager -->
+  <!-- HOTJAR -->
+  <script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1889212,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+  </script>
+  <!-- END HOTJAR-->
+  <meta charset="utf-8">
+  <title>Mi Firma</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="msapplication-TileColor" content="#004453">
+  <meta name="theme-color" content="#004453">
+  <meta name="msapplication-TileImage" content="assets/img/favicon/favicon-128x128.ico">
+
+  <link rel="icon" type="image/x-icon" sizes="128x128" href="assets/img/favicon/favicon-128x128.ico">
+  <link rel="icon" type="image/x-icon" sizes="64x64" href="assets/img/favicon/favicon-64x64.ico">
+  <link rel="icon" type="image/x-icon" sizes="32x32" href="assets/img/favicon/favicon-32x32.ico">
+  <link rel="icon" type="image/x-icon" sizes="48x48" href="assets/img/favicon/favicon-48x48.ico">
+  <link rel="icon" type="image/x-icon" sizes="16x16" href="assets/img/favicon/favicon-16x16.ico">
+  <link rel="manifest" href="manifest.json">
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap"
+        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--FONTS PARA LA FIRMA-->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Great+Vibes&family=Sofia&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NP55LXD" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+  </noscript>
+
+  <!-- End Google Tag Manager (noscript) -->
+  <!-- BROWSERS SUPPORT -->
+  <script type='text/javascript'>
+  if ((navigator.userAgent.indexOf('MSIE') != -1) || (!!document.documentMode == true)) {
+    var div = document.createElement('browserMessage');
+    div.style.position = 'fixed';
+    div.style.top = '50%';
+    div.style.left = '50%';
+    div.style.transform = 'translate(-50%)';
+    div.innerHTML = 'Para utilizar Mi Firma utiliza alguno de los siguientes navegadores: Chrome, Firefox o Safari';
+    document.body.appendChild(div);
+  } else if (((!!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime)) && (navigator.userAgent.indexOf("Edg") != -1)
+            || ((!!document.documentMode == false) && !!window.StyleMedia))
+            &&  navigator.userAgent.substr(navigator.userAgent.indexOf("Edg"),
+                navigator.userAgent.length - navigator.userAgent.indexOf("Edg"))
+                .substr(navigator.userAgent.substr(navigator.userAgent.indexOf("Edg"),
+                navigator.userAgent.length - navigator.userAgent.indexOf("Edg"))
+                .indexOf('/') + 1, 2) < 83) {
+    var div = document.createElement('browserMessage');
+    div.style.position = 'fixed';
+    div.style.top = '50%';
+    div.style.left = '50%';
+    div.style.transform = 'translate(-50%)';
+    div.innerHTML = 'Para utilizar Mi Firma actualiza tu navegador a la última versión de Microsoft Edge';
+    document.body.appendChild(div);
+  }
+  </script>
+  <!-- END BROWSERS SUPPORT -->
+  <!-- PDF WORKER -->
+  <script>
+    window.pdfWorkerSrc = '/assets/pdf/pdf.worker.js';
+  </script>
+  <!-- END PDF WORKER -->
+  <!-- PIXEL EL TIEMPO -->
+  <img height="1" width="1" src="https://stags.bluekai.com/site/70633?limit=1&phint=home%3Dolimpia" style="position: absolute;">
+  <!-- END PIXEL EL TIEMPO -->
+  <app-root></app-root>
+</body>
+</html>

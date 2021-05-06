@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+.form__floating > input:focus {
+  outline: none;
+}
+
+.form__floating > label {
+  cursor: auto;
+}
+
+.omitir-btn {
+  background-color: #9E267C;
+  border: 2px solid #9e267c;
+  color: white;
+}
+
+.next-btn::before {
+  content: "\2192";
+  color: white;
+  font-weight: bolder;
+  margin-left: .5em;
+}
+.enjoyhint_next_btn, .next-btn {
+  min-width: 40px;
+  height: 40px;
+  width: 40px;
+  color: transparent;
+  background-color: green;
+  border: 2px solid green;
+}

@@ -1,0 +1,87 @@
+<div class="section-teams">
+    <div class="header-teams">
+        <div class="header-title">
+            <h1 class="title-teams">{{groupName}}</h1>
+        </div>
+        <div>
+            <button class="continue-btn-4" (click)="goBack()">Volver</button>
+        </div>
+    </div>
+
+    <div class="header-tools mt-20">
+        <div class="input-icons">
+            <input class="input-field" type="text" placeholder="Buscar Usuario" [(ngModel)]="wordSearch"
+                (keydown.enter)="searchUsers()">
+            <div *ngIf="wordSearch != ''" class="cancel_search" title="Cancelar Busqueda" (click)="searchAllUser()">
+                <i class="icon-error"></i>
+            </div>
+            <img src="../../../../../assets/img/lupa.svg" alt="" (click)="searchUsers()">
+        </div>
+        <div class="btn-tools">
+            <button class="btn-tool-1 ml-10" (click)="inviteUser()">Invitar</button>
+        </div>
+    </div>
+
+    <div class="teams__table">
+        <div class="table__headers">
+            <span class="header__item header__item--lg">Nombre</span>
+            <span class="header__item header__item--md">Correo Corporativo</span>
+            <span class="header__item header__item--sm">Acceso</span>
+            <span class="header__item header__item--sm">Acciones</span>
+        </div>
+
+        <div>
+            <div *ngFor="let user of users; let i = index" class="team">
+                <div class="info__wrapper">
+                    <div class="team__info team__info--lg">
+                        <div class="team__signers team-action">
+                            <span>{{ user.customerFirstName }} {{user.customerLastName}}</span>
+                        </div>
+                    </div>
+
+                    <p class="team__info team__info--md">
+                        <span>{{user.customerUserName}}</span>
+                    </p>
+
+                    <div class="team__info team__info--sm">
+                        <mat-select class="my-select5 input-role" [value]="user.rol" [(ngModel)]="user.rol" placeholder="Rol" [ngModelOptions]="{standalone: true}">
+                            <mat-option  *ngFor="let rol of roles; let j=index" [value]="rol.name" (click)="changeRole(i,rol.name)">
+                                {{rol.name}}
+                            </mat-option>
+                        </mat-select>
+                        <div class="button-role" *ngIf="user.updateRole" (click)="changeUserRol(user.idCustomer,user.rol)">
+                            <i class="icon icon-correct"></i>
+                        </div>
+                    
+                    </div>
+                    
+
+                </div>
+
+
+                <div class="team__info team__info--sm team__actions actions-folders">
+
+
+
+                    <button class="button_menu menu-folders" id="{{i}}" (click)="menuOptionTeams(i,$event)">
+                        <span id="{{i}}" class="icon icon-more icon__more__small">
+                        </span>
+                    </button>
+
+                    <div (click)="menuOptionTeams(i,$event)" *ngIf="user.menuOpen" class="menu__desplegable historial">
+                        <span class="icon icon-down-arrow menu__desplegable-icon__close"
+                            (click)="menuOptionTeams(i, $event)">
+                        </span>
+                        <div (click)="deleteUser(user.idCustomer,user.rol)">
+                            <span class="icon icon-bin"></span>
+                            <p>Eliminar</p>
+                        </div>
+                    </div>
+                    <div [class.menu__desplegable--mask]="user.menuOpen"
+                        [class.menu__desplegable--mask__hidden]="!user.menuOpen">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

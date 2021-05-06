@@ -1,0 +1,138 @@
+<section class="payments__wrapper">
+    <div class="payment__header">
+        <h2 class="payment__title">Registra la información de pago</h2>
+    </div>
+
+    <div class="payment__content">
+        <div class="payment__method">
+            <ng-container *ngIf="step == 1">
+                <div class="payments__wrapper">
+                    <h3 class="payment-subtitle">Medio de pago</h3>
+                
+                    <mat-radio-group [(ngModel)]="paymentMethod"
+                                    class="payment__options">
+                        <mat-radio-button *ngFor="let option of paymentMethods"
+                                        class="option custom-rb"
+                                        [value]="option.method">
+                            {{ option.method }}
+                            <img *ngFor="let image of option.images"
+                                src="assets/img/{{ image }}.svg" alt="Payment">
+                        </mat-radio-button>
+                    </mat-radio-group>
+                    <div>
+                        <form [formGroup]="paymentData" (ngSubmit)="continuePayment($event)">
+                            <div formGroupName="tdc">
+                                <div class="form__row">
+                                    <input
+                                    formControlName="cardNumber"
+                                    type="tel"
+                                    autocomplete="cc-number"
+                                    id="cc-number"
+                                    placeholder="Número de Tarjeta de Crédito"
+                                    class="form__input2"
+                                    [class.input-wrong]="(cardNumberFormControl.invalid && cardNumberFormControl.touched)">
+                                </div>
+                        
+                                <div class="form__row">
+                                    <input formControlName="month"
+                                        type="text"
+                                        placeholder="MM"
+                                        maxlength="2"
+                                        inputmode="numeric"
+                                        class="form__input"
+                                        [class.input-wrong]="(monthFormControl.invalid && monthFormControl.touched)">
+                    
+                                    <input formControlName="year"
+                                        type="text"
+                                        placeholder="YY"
+                                        maxlength="2"
+                                        class="form__input"
+                                        [class.input-wrong]="(yearFormControl.invalid && yearFormControl.touched)">
+                    
+                                    <input formControlName="cvv"
+                                        type="tel"
+                                        autocomplete="cc-cvc"
+                                        id="cc-csc"
+                                        placeholder="CVC"
+                                        class="form__input u_ff"
+                                        [class.input-wrong]="(cvvFormControl.invalid && cvvFormControl.touched)">
+                                </div>
+                    
+                                <div class="form__row">
+                                    <mat-select formControlName="dues"
+                                                class="form__input form__select"
+                                                placeholder="N° de cuotas">
+                                        <mat-option *ngFor="let cuota of cuotas"
+                                                    [value]="cuota">{{ cuota }}</mat-option>
+                                    </mat-select>
+                                </div>
+                    
+                                <div class="form__row">
+                                    <div>
+                                        <input type="checkbox">
+                                        <label class="form__label">Asociar esta tarjeta de crédito para futuras compras</label>
+                                    </div>
+                                </div>
+                    
+                                <div class="form__actions">
+                                    <button [routerLink]="'/main/plan'"
+                                            class="form__button form__button--cancel"
+                                            id="btnCancelar"
+                                            name="btnCancelar">
+                                        Cancelar
+                                    </button>
+                    
+                                    <button [disabled]="paymentData.invalid"
+                                            type="submit"
+                                            class="form__button"
+                                            id="btnGuardar"
+                                            name="btnGuardar">
+                                        Siguiente
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </ng-container>
+
+            <app-info-facturacion *ngIf="step == 2"></app-info-facturacion>
+        </div>
+
+        <div class="payment__summary">
+            <h4 class="summary__title">Resumen del pedido</h4>
+
+            <div>
+                <div class="plan__basic-info">
+                    <h5 class="plan__name">{{ plan.name }}<span class="plan__quantity"></span></h5>
+                    <h3 class="plan__cost">${{ value | number }}</h3>
+                </div>
+
+                <ul class="plan__description">
+                    <ng-container *ngFor="let feature of plan.featuresDto">
+                        <li class="description">{{ feature.description }}</li>
+                    </ng-container>
+                </ul>
+            </div>
+
+            <div class="plan__confirmation">
+                <h4 class="confirmation__label">Total</h4>
+                <h3 class="plan__cost">${{ value | number }}</h3>
+            </div>
+
+            <div class="payment__actions">
+                <button [disabled]="step !== 2"
+                        class="confirm__button"
+                        id="confirmar_compra"
+                        (click)="purchase()">
+                    Completar compra
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="payment__footer">
+        <p class="footer__label">Paga seguro con</p>
+        <img src="assets/img/logo-PCI.svg" alt="PCI" class="footer__image">
+    </div>
+</section>

@@ -1,0 +1,15 @@
+.box__no-service {
+  text-align: center;
+  padding: 10% 5%;
+}
+
+.text__no-service {
+  letter-spacing: 0px;
+  color: #373737;
+}
+
+  .text__no-service span {
+    letter-spacing: 0px;
+    color: #373737;
+    font-weight: 800;
+  }

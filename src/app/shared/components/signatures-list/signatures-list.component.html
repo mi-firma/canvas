@@ -1,0 +1,17 @@
+<div>
+    <div>
+        <div class="signature__row"
+             *ngFor="let signature of signatures;">
+            <img class="signature__thumbnail"
+                 [src]="signature.archivo"
+                 alt=""
+                 (click)="chooseSignature(signature.archivo, signature.guid)">
+        </div>
+    </div>
+    <div class="bottom__menu">
+        <button class="add__signature__button"
+                (click)="addSignature()">
+            <span class="icon icon-add"></span> Agregar Firma
+        </button>
+    </div>
+</div>

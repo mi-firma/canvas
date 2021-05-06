@@ -1,0 +1,40 @@
+<div class="main-menu">
+
+    <h2 class="welcome-text">
+        ¡Hola {{userName}}!,
+        <span>¿Qué deseas hacer?</span>
+    </h2>
+
+    <div class="main-menu__options">
+        <a *ngFor="let option of mainOptions"
+           (click)="goTo(option.url)"
+           class="menu__option"
+           [attr.id]="option.id"
+           [class.disabled]="option.disabled">
+            <!-- <div *ngIf="option.showSignatures"
+                 class="menu__option__circle">
+                <span>
+                    {{availableSignatures}}
+                </span>
+                FIRMAS
+            </div> -->
+            <img src="assets/img/{{ option.icon }}.svg"
+                 class="option__image"
+                 alt="{{ option.icon }}">
+            {{ option.name }}
+        </a>
+    </div>
+
+    <!-- <h2 class="welcome-text">Más opciones para ti</h2>
+
+    <div class="main-menu__options main-menu__options--small">
+        <div *ngFor="let option of otherOptions"
+             class="menu__option"
+             (click)="goTo(option.url)">
+            <img src="assets/img/{{ option.icon }}.svg"
+                 class="option__image"
+                 alt="{{ option.icon }}">
+            {{ option.name }}
+        </div>
+    </div> -->
+</div>

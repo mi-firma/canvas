@@ -1,0 +1,12 @@
+.main__wrapper {
+    margin-top: 65px;
+    width: 100%;
+    padding: 5% 0% 0;
+}
+
+@media (max-width: 640px) {
+    .main__wrapper {
+        margin-top: 75px;
+        padding: 0;
+    }
+}

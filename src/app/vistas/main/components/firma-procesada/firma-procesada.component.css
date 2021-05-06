@@ -1,0 +1,45 @@
+.view__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    overflow: hidden;
+}
+
+.img__container {
+    height: 100px;
+    width: auto;
+    margin: auto;
+}
+
+.img__container img {
+    height: 100%;
+    width: auto;
+}
+
+.content__container {
+    padding: 0 10%;
+    margin: 50px 0;
+}
+
+.content__container--message {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 50px; 
+}
+
+.content__container--message span {
+    font-weight: 700;
+}
+
+@media (max-width: 640px) {
+
+    .view__container {
+        width: 100%;
+    }
+
+    .content__container--message {
+        font-size: 16px;
+    }
+}

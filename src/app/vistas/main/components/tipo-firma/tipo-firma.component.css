@@ -1,0 +1,176 @@
+.sign-type__section {
+    padding: 2% 10%;
+}
+
+.title_text_sign {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    padding: 2%;
+}
+
+.main_options-sign {
+    margin: 40px 0 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: stretch;
+    font-weight: 700;
+}
+
+.main_options-sign--small {
+    width: 80%;
+    margin: 40px auto;
+}
+
+.options-sign.disabled {
+    background-color: #ffffff;
+    cursor: not-allowed;
+    pointer-events: visibleStroke;
+    color: #C8C8C8;
+    overflow: hidden;
+
+}
+
+.options-sign:hover > .options-sign-hover{
+    display: block;
+}
+
+.name_option.disabled{
+    color: #C8C8C8
+}
+
+.description_option.disabled{
+    color: #C8C8C8
+}
+
+.options-sign {
+    position: relative;
+    border: 1px solid #c8c8c8;
+    text-align: center;
+    font-weight: 500;
+    border-radius: 10px;
+    width: 401px;
+    max-width: 401px;
+    height: 168px;
+    padding: 3% 2%;
+    color: #3f3f3f;
+    text-decoration: none;
+    margin: auto;
+    font-weight: 500;
+    font-size: 15px;
+    /*overflow: hidden;*/
+    transition: all .3s;
+}
+
+.options-sign-hover {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10% 10%;
+    opacity: 0.75;
+    background-color: #0182C4;
+    color: #ffffff;
+    display: none;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.sign-option_content {
+    display: flex;
+}
+
+.text_option{
+    padding: 5% 0% 0% 10%;
+}
+
+.name_option{
+    text-align: left;
+    color: #9e267c;
+    margin-bottom: 5px;
+    font-size: 17px;
+}
+
+.description_option{
+    text-align: left;
+    color: #3f3f3f;
+    font-size: 12px;
+}
+
+.no-sign-bar {
+    position: absolute;
+    background: #e6e6e6;
+    transform: rotate(45deg);
+    top: 8%;
+    right: -7%;
+    padding: 10px 20px;
+    font-size: 5px !important;
+    color: #707070;
+}
+
+.no-sign-bar span {
+    display: block;
+    font-weight: 600;
+    font-size: 10px;
+}
+
+.options-sign:hover {
+    transform: scale(1.05);
+    -webkit-box-shadow: -1px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: -1px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: -1px 0px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.main_options-sign--small .options-sign {
+    font-size: 13px;
+    height: 150px;
+    padding: 20px 10px 10px;
+}
+
+.options-sign:hover {
+    text-decoration: none;
+    color: #3f3f3f;
+}
+
+.option__image {
+    display: block;
+    min-height: 75px;
+    margin: 0 auto 20px;
+}
+
+.main-menu__options--small .option__image {
+    min-height: 50px;
+    width: 45%;
+    margin: 0 auto 10px;
+}
+
+@media (max-width: 640px) {
+    .options-sign {
+        padding: 10% 5%;
+        margin-bottom: 5%;
+        height: 150px;
+    }
+
+    .name_option{
+        font-size: 14px;
+    }
+    
+    .description_option{
+        font-size: 10px;
+    }
+
+    .no-sign-bar {
+        right: -10%;
+    }
+
+    .option__image {
+        height: 40px;
+        margin: 12px auto 20px;
+    }
+
+    .options-sign-hover {
+        font-size: 12px;
+    }
+}

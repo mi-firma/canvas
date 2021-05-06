@@ -1,0 +1,128 @@
+.close__button {
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.close__button i {
+  font-size: 20px;
+}
+
+.modal__massive {
+  height: 80vh;
+  text-align: center;
+  padding: 50px 5%;
+}
+
+.modal__body {
+  height: calc(100% - 80px);
+  overflow: auto;
+}
+
+.long-signers__wrapper {
+  text-align: center;
+  padding: 50px 5%;
+}
+
+.signers__title {
+  color: #373737;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.container__buttons {
+  height: 80px;
+  float: right;
+  display: flex;
+  align-items: flex-end;
+}
+
+.button__confirm {
+  border: 1px solid #9e267d;
+  color: #fff;
+  border-radius: 5px;
+  background-color: #9e267d;
+  padding: 10px 20px;
+  font-size: 12px;
+  text-align: center;
+  font-weight: normal;
+  margin: 0 10px;
+}
+
+.button__cancel {
+  border: 1px solid #706F70;
+  color: #707070;
+  border-radius: 5px;
+  background-color: #ffffff;
+  padding: 10px 20px;
+  font-size: 12px;
+  text-align: center;
+  font-weight: 600;
+  margin: 0 10px;
+}
+
+.document__table {
+  margin: 0 20px;
+  color: #3F3F3F;
+}
+
+.document__masive {
+  padding: 20px 0;
+  display: flex;
+}
+
+.document__masive {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 15px 0;
+}
+
+.info__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.masive__info {
+  width: 30%;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.masive__info--xs{
+  width: 5%;
+}
+
+.masive__info--m{
+  width: 45%;
+}
+
+.masive__info--count {
+  font-weight: 900;
+}
+
+.masive__actions {
+  padding: 0;
+  position: relative;
+}
+
+.masive__info--menu {
+  width: 5%;
+}
+
+.button_menu {
+  border: none;
+  cursor: pointer;
+  background-color: #fff;
+  margin-left: 10px;
+}
+
+@media (max-width: 640px) {
+
+}
+

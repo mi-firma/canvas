@@ -1,0 +1,79 @@
+@media (max-width: 640px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  /* app-login-firmador */
+  .firmador__login,
+  .firmador__register {
+    position: relative;
+    width: 100%;
+  }
+
+  .login__wrapper,
+  .register__wrapper {
+    flex-direction: column;
+  }
+
+  .log-der {
+    width: 100%;
+    height: auto;
+    background: unset;
+    padding: 5%;
+    overflow: hidden;
+    margin: 0;
+
+  }
+
+  .log__iz--pin {
+    display: none;
+  }
+
+  .log__text--full {
+    width: 100%;
+  }
+
+  .log-der {
+    padding: 5%;
+  }
+  /* app-login-usuario */
+  .log-usu {
+    position: static;
+    transform: none;
+  }
+
+  .register__form {
+    margin-top: 40px;
+  }
+
+  .form__input {
+    padding: 12p 15px;
+  }
+
+  .form__label {
+    font-size: 12px;
+  }
+
+  .form__button {
+    font-size: 16px;
+    padding: 10px 40px 8px;
+    height: auto;
+  }
+
+  .click-text {
+    margin-left: 10px;
+    color: #1ca8ff;
+  }
+
+  .drop-box-cont {
+    height: 30vh;
+    background-size: cover;
+  }
+
+  /* Firmador */
+  .box-2 pdf-viewer {
+    height: auto;
+  }
+}
+

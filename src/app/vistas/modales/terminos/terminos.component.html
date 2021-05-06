@@ -1,0 +1,23 @@
+<div class="terms__modal">
+
+    <div (scroll)="hasScrolledToBottom($event)" id="terms" class="terms__container">
+
+        <div id="termino">
+            
+        </div>
+        
+        <footer>
+            <div class="foot-content">
+                <p class="txt-foot">Mi Firma by Olimpia © Todos los derechos reservados - 2020</p>
+            </div>
+        </footer>
+    </div>
+
+    <div class="terms__options">
+        <button
+            [disabled]="!enableButton"
+            (click)="acceptTerms()">
+            Aceptar
+        </button>
+    </div>
+</div>

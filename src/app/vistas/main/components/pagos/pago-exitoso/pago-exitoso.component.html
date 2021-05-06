@@ -1,0 +1,20 @@
+<div class="payment__container">
+    <img height="1" width="1" src="https://stags.bluekai.com/site/70633?limit=1&phint=thankyoupage%3Dolimpia" style="position: absolute;">
+    <div class="otp__action">
+        <span class="icon icon-correct"></span>
+    </div>
+    <p class="thanks__text">¡Gracias por tu compra!</p>
+    <p class="result__info">Tu solicitud de compra ha sido generada</p>
+    <p class="summary__info">Resumen de la compra</p>
+    <div class="plan__info__container">
+        <p class="p-left-1">{{ plan.name }}</p>
+        <p>${{value | number}}</p>
+    </div>
+    <p>Ya puedes <span>empezar a firmar</span> tus documentos con <span>Mi Firma</span></p>
+    <div class="disp-flex mt-30">
+        <button [routerLink]="'/main/menu'"
+                class="button__done">
+            Regresar a mi cuenta
+        </button>
+    </div>
+</div>

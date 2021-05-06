@@ -1,0 +1,77 @@
+<div class="firmador__register">
+  <div class="log-bar"></div>
+
+  <div class="register__wrapper disp-flex">
+    
+    <div class="register__left">
+      <div class="register__cont-mov">
+        <lottie-animation-view
+            [options]="animObjmov">
+        </lottie-animation-view>
+      </div>
+      <div class="register__cont">
+          <lottie-animation-view
+              [options]="animObj">
+          </lottie-animation-view>
+      </div>
+  </div>
+
+    <div class="log-der">
+      <div class="log-usu text-center">
+        <img src="../../../../assets/img/logo-mi-firma.svg" alt="">
+        <div (keydown.enter)="continuar()">
+          <form class="form__left" [formGroup]="formRegistro">
+            <div class="form__floating mt-20">
+              <input id="direccion"
+                    type="text"
+                    name="street-address"
+                    autocomplete="street-address"
+                    placeholder="Dirección de residencia"
+                    formControlName="Direccion"
+                    maxlength="100">
+              <label for="direccion">Dirección de residencia</label>
+            </div>
+            <div class="text-left-ovwrite"
+                [ngClass]="{'inv':!((Direccion.invalid && Direccion.touched) || Direccion.dirty)}">
+              <small [ngClass]="{'inv':!Direccion.errors?.required}" class="text-error">La dirección es requerida</small>
+            </div>
+            <div class="form__floating">
+              <input id="complemento" type="text" placeholder="Complemento (Apto, Bloque)" formControlName="Complemento"
+                    maxlength="20">
+              <label for="complemento">Complemento (Apto, Bloque)</label>
+            </div>
+            <div class="text-left-ovwrite">
+              <small [ngClass]="{'inv':true}" class="text-error">*</small>
+            </div>
+            <mat-select formControlName="Departamento" class="my-select2 text-left-ovwrite"
+                        placeholder="Departamento">
+              <mat-option (onSelectionChange)="findCities(departamento.ID, $event)"
+                          *ngFor="let departamento of departamentos" [value]="departamento">
+                {{departamento.Name}}
+              </mat-option>
+            </mat-select>
+            <div class="text-left-ovwrite"
+                [ngClass]="{'inv':!((Departamento.invalid && Departamento.touched) || Departamento.dirty)}">
+              <small [ngClass]="{'inv':!Departamento.errors?.required}" class="text-error">
+                El departamento es
+                requerido
+              </small>
+            </div>
+            <mat-select formControlName="Ciudad" class="my-select2 text-left-ovwrite"
+                        placeholder="Ciudad de residencia">
+              <mat-option *ngFor="let ciudad of ciudades" [value]="ciudad">
+                {{ciudad.Name}}
+              </mat-option>
+            </mat-select>
+            <div class="text-left-ovwrite" [ngClass]="{'inv':!((Ciudad.invalid && Ciudad.touched) || Ciudad.dirty)}">
+              <small [ngClass]="{'inv':!Ciudad.errors?.required}" class="text-error">La ciudad es requerida</small>
+            </div>
+          </form>
+        </div>
+        <div class="algn-l">
+          <button (click)="continuar()" class="continue-btn-2">Siguiente</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

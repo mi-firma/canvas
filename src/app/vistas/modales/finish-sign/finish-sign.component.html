@@ -1,0 +1,88 @@
+<div (click)="close()" class="close__button">
+    <i class="icon icon-error"></i>
+</div>
+<div class="check-section">
+    <h1 *ngIf="!isThirdParty || !thirdPartyColor" class="check__title mb-10">Revisar y enviar</h1>
+    <h1 *ngIf="isThirdParty && thirdPartyColor" 
+    class="check__title mb-10"
+    [ngStyle]="{'color' : thirdPartyColor }"
+    >{{ thirdPartyConfirmTitle || "Revisar y enviar"  }}</h1>
+    <div class="check__body">
+        <div class="check__left-side">
+            <div *ngIf="thirdPartyExpiration || !isThirdParty">
+                <p class="check__subtitle mt-20 ">Expiración de documentos:</p>
+                <div class="d-flex mb-20 check__center">
+                    <p class="info-text mr-10">Los documentos enviados expiran en</p>
+                    <input [(ngModel)]="expDays" maxlength="2" class="input-number" type="tel" onkeydown="return ( event.ctrlKey || event.altkey || (47 < event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95 < event.keyCode && event.keyCode<106)|| (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40)|| (event.keyCode==46))">
+                    <p class="info-text ml-10">días.</p>
+                </div>
+            </div>
+
+            <div *ngIf="thirdPartyAutoReminders || !isThirdParty">
+                <p class="check__subtitle mt-20">Recordatorios automáticos:</p>
+                <div class="d-flex mb-20 check__center">
+                <input [(ngModel)]="checkReminderDays" type="checkbox" class="input-check" (change)="changeCheckReminderDays()">
+                <p class="info-text mr-10">Enviar recordatorio automático en</p>
+                <input [(ngModel)]="reminderDays" maxlength="2" class="input-number" type="tel" [disabled]="!checkReminderDays" onkeydown="return ( event.ctrlKey || event.altkey || (47 < event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95 < event.keyCode && event.keyCode<106)|| (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40)|| (event.keyCode==46))">
+                <p class="info-text ml-10">días.</p>
+                </div>
+            </div>
+
+            <div class="select-box mb-20">
+                <p class="check__subtitle">Enviar Copia: </p>
+                <div class="display-message">
+                    <img src="../../../../../assets/img/information-button.svg" alt="">
+                  </div>
+                  <div class="alt__container">
+                    <div class="alt__message">
+                      <p>Se envía una copia del documento una vez</p>
+                      <p>se completen todas las firmas</p>
+                    </div>
+                  </div>
+            </div>
+            <mat-form-field class="email-list mb-20">
+                <mat-label>Correos</mat-label>
+                <mat-chip-list #chipList aria-label="Correos">
+                  <mat-chip *ngFor="let email of emails" [selectable]="selectable"
+                           [removable]="removable" (removed)="remove(email)">
+                    {{email}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                  <input placeholder="Añadir correo"
+                         [matChipInputFor]="chipList"
+                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                         [matChipInputAddOnBlur]="addOnBlur"
+                         (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+                <mat-error>Ingrese un correo valido</mat-error>
+                <mat-hint>Para compartir a más de un correo, pulsa enter o sepáralos por comas.</mat-hint>
+            </mat-form-field>
+
+            <!-- <p class="check__subtitle">Recordatorios automáticos:</p>
+            <div class="d-flex">
+                <input type="checkbox">
+                <p>Enviar recordatorio automático en</p>
+                <input type="text">
+                <p>días.</p>
+            </div> -->
+        </div>
+        <div class="check__right-side">
+            <p class="check__subtitle mb-20">Mensaje para los usuarios con copia cuando el documento este completo:</p>
+
+            <div class="form__floating mb-20">
+                <input id='affair' type="text" placeholder="Asunto" [(ngModel)]="affair" maxlength="50">
+                <label for="affair">Asunto</label>
+            </div>
+
+            <textarea class="input-text" placeholder="Escriba aquí su mensaje" name="bodyEmail" id="bodyEmail" cols="30" rows="10" [(ngModel)]="emailBody" maxlength="1000"></textarea>
+            <div class="algn-r-v3 mt-20">
+                <button *ngIf="!thirdPartyColor || !isThirdParty" (click)="enviar()" class="continue-btn-3">Enviar</button>
+                <button *ngIf="thirdPartyColor && isThirdParty" 
+                (click)="enviar()" 
+                [ngStyle]="{'background-color' : thirdPartyColor, 'border-color' : thirdPartyColor }"
+                class="continue-btn-3"
+                >Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<div class="cargador-screen" *ngIf="loading">
+  <div *ngIf="!isThirdParty || !thirdPartyLoaderUrl" class="cargador-screen-icon"></div>
+  <div *ngIf="isThirdParty && thirdPartyLoaderUrl" 
+  class="cargador-screen-icon"
+  [ngStyle]="{'background-image': 'url(' + thirdPartyLoaderUrl + ')'}"
+  ></div>
+</div>

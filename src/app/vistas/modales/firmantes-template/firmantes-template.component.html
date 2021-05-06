@@ -1,0 +1,58 @@
+<div (click)="close()" class="close__button">
+    <i class="icon icon-error"></i>
+</div>
+<div class="long-signers__wrapper">
+    <h2 class="signers__title">Crear Documento</h2>
+    <h3 class="signers__subtitle">Añade los firmantes del documento</h3>
+    <form class="signers__form mt-20" #formulario ngNativeValidate>
+        <div>
+            <div class="dragula-box" *ngFor="let firmante of firmantes; let i = index">
+                <div class="number-fir">{{i+1}}</div>
+
+                <input class="input__email" required [(ngModel)]="firmante.tipo" type="text" maxlength="50" [ngStyle]="{ 'background-color': firmante.color}" placeholder="Rol" name={{firmante.tipo}} id={{firmante.tipo}} [ngModelOptions]="{standalone: true}" disabled>
+
+                <!-- <mat-select class="my-select3 input-template mt-20" required [(ngModel)]="firmante.tipo"
+                    placeholder="Seleccione rol" [ngStyle]="{ 'background-color': firmante.color}"
+                    name={{firmante.tipo}} id={{firmante.tipo}} [ngModelOptions]="{standalone: true}">
+                    <div *ngFor="let rol of roles; let j=index" [ngStyle]="{'position': 'relative'}">
+                        <mat-option [value]="rol" [ngStyle]="{ 'background-color': colors[j] }"
+                            (onSelectionChange)="changeRole(j,i,rol, $event)">
+                            {{rol}}
+                        </mat-option>
+                    </div>
+                </mat-select> -->
+
+                <input class="input__name" required [(ngModel)]="firmante.nombre" type="text" placeholder="Nombre" [disabled]="firmante.enabled" [ngStyle]="{ 'background-color': firmante.color }" maxlength="30" name={{firmante.nombre}} id={{firmante.nombre}} [ngModelOptions]="{standalone: true}">
+
+                <input class="input__email" required [(ngModel)]="firmante.correo" type="email" maxlength="50" [disabled]="firmante.enabled" [ngStyle]="{ 'background-color': firmante.color}" placeholder="Correo electrónico" name={{firmante.correo}} id={{firmante.correo}}
+                    [ngModelOptions]="{standalone: true}">
+
+            </div>
+        </div>
+    </form>
+
+    <ng-template #passtext>
+        <div (click)="t.close()" class="close__button">
+            <i class="icon icon-error"></i>
+        </div>
+        <p>Con esta funcionalidad podrás enviar una copia de tu documento a un listado de usuarios, para que sea firmado individualmente, cada uno recibirá su propia copia. <a class="form__button--masive" href="https://ayuda.olimpiait.com/es/funcionalidades#plantillas"
+                target="_blank">Más información</a></p>
+        <br>
+        <a (click)="descargarFormato()" class="form__button--masive">Descargar aquí plantilla .csv para el uso de esta funcionalidad.</a>
+    </ng-template>
+    <div class="form__container--buttons">
+        <img [ngClass]="{'no-show': roles.length < 2 || !massive}" class="cursor-pointer mr-10" src="../../../../../assets/img/information-button.svg" alt="" [ngbTooltip]="passtext" [autoClose]="false" triggers="manual" #t="ngbTooltip" (click)="t.open()" tooltipClass="tip-massive"
+            placement="bottom">
+        <div class="upload__format" *ngIf="roles.length >= 2 && massive">
+            <span class="upload__format--label" (click)="checkInfoMassive()">
+            Cargar lista masiva
+          </span>
+
+            <input *ngIf="checkInfoMassive2()" #formatFile type="file" multiple="false" accept=".csv" class="upload__format--input" (change)="uploadListMasive(formatFile.files); formatFile.value = null;" />
+        </div>
+
+        <!-- <a (click)="continuar()" class="form__button--masive"><span class="icon icon-info-gray"></span> Cargar lista masiva</a> -->
+        <button class="form__button" id="btnContinuar" name="btnContinuar" (click)="continuar()">Continuar</button>
+    </div>
+    <div id="viewer" class="wbViewer"></div>
+</div>

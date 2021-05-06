@@ -1,0 +1,229 @@
+.long-signers__wrapper {
+    text-align: center;
+    padding: 50px 5%;
+}
+
+.signers__title {
+    color: #373737;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.signers__subtitle {
+    color: #373737;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.wbViewer {
+    height: 0;
+    width: 0;
+}
+
+.my-select3 {
+    width: 26% !important;
+    border: 1px solid #BEBEBE;
+    border-radius: 5px;
+    padding: 10px;
+    margin: auto;
+    font-family: inherit !important;
+}
+
+.input-template {
+    height: 40px;
+    padding: 10px;
+    text-align: left;
+    background-color: #FFFFFF;
+    z-index: 10;
+}
+
+.form__button {
+    border: 1px solid #9e267d;
+    color: #fff;
+    border-radius: 5px;
+    background-color: #9e267d;
+    padding: 10px 20px;
+    font-size: 12px;
+    text-align: center;
+    font-weight: normal;
+}
+
+.fake_input {
+    position: absolute;
+    width: 1px !important;
+    left: 25%;
+    z-index: 1;
+    top: 5px;
+    height: 20px;
+}
+
+.close__button {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.close__button i {
+    font-size: 20px;
+}
+
+.add-button {
+    display: flex;
+    color: #707070;
+    background-color: transparent;
+    font-size: 14px;
+    border: none;
+    padding: 5px 10px;
+}
+
+.add-button .icon {
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.number-fir {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #bebebe;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.dragula-box {
+    width: 100%;
+    display: flex;
+    position: relative;
+    margin: 10px 0px;
+}
+
+.dragula-box .mat-select {
+    width: 21%;
+    margin: auto;
+}
+
+.input__name {
+    width: 26%;
+    margin: auto;
+}
+
+.input__email {
+    width: 26%;
+    margin: auto;
+}
+
+.button__bin {
+    margin: 10px 0px;
+    cursor: pointer;
+}
+
+.form__container--buttons {
+  float: right;
+}
+
+.form__button--masive {
+  padding: 10px 20px 10px 0;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #0182C4 !important;
+}
+
+.form__button--masive:hover {
+  text-decoration: underline !important;
+}
+
+.form__button--masive>span {
+  vertical-align: middle;
+}
+
+input[type="file"] {
+  display: initial;
+}
+
+.upload__format {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+}
+
+.upload__format--label {
+  padding: 10px 20px 10px 0;
+  color: #0182C4 !important;
+  cursor: pointer;
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.upload__format--input {
+  bottom: 0px ;
+  cursor: pointer ;
+  left: 0px ;
+  opacity: 0.0 ;
+  position: absolute ;
+  right: 0px ;
+  top: 0px ;
+}
+
+.upload__format:hover {
+  text-decoration: underline !important;
+  color: #0182C4 !important;
+}
+
+.no-show{
+    display: none;
+}
+
+.tip-massive{
+    background-color: #FFFFFF;
+}
+
+@media (max-width: 640px) {
+    .signers__subtitle {
+        font-size: 14px;
+        margin: 0;
+    }
+    .number-fir {
+        display: none;
+    }
+    .dragula-box {
+        flex-wrap: wrap;
+    }
+    .input__name {
+        width: calc(100% - 25px);
+        margin-left: 5px;
+    }
+    .input__email {
+        width: calc(100% - 45px);
+        margin-left: 25px;
+        margin-right: 4px;
+        margin-top: 10px;
+    }
+    .button__bin {
+        margin-top: 20px;
+    }
+    .dragula-box {
+        flex-direction: column;
+    }
+    .dragula-box .mat-select {
+        width: 95%;
+        margin: auto auto 5px;
+    }
+    .input__name {
+        width: 95%;
+        margin: auto auto 5px;
+    }
+    .input__email {
+        width: 95%;
+        margin: auto auto 5px;
+    }
+
+    .my-select3 {
+        width: 95% !important;
+        margin: auto auto 5px;
+    }
+}

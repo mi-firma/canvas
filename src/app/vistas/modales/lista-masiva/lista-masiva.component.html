@@ -1,0 +1,37 @@
+<div class="modal__massive">
+  <div (click)="dismissList()" class="close__button">
+    <i class="icon icon-error"></i>
+  </div>
+
+    <div class="modal__header">
+      <h2 class="signers__title">Importación de lista masiva</h2>
+    </div>
+
+    <div class="modal__body">
+
+      <div class="document__table">
+        <div class="detail__content">
+          <div class="document__masive" *ngFor="let masive of dataLista; let i = index">
+
+            <div class="info__wrapper">
+              <p class="masive__info masive__info--xs masive__info--count">{{ i + 1 }}</p>
+              <p class="masive__info masive__info--m">{{ masive.name }}</p>
+              <p class="masive__info masive__info--m">{{ masive.email }}</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="container__buttons">
+      <button class="button__cancel" (click)="dismissList()">Descartar</button>
+      <button class="button__confirm" id="btnContinuar" name="btnContinuar" (click)="confirm()">Confirmar</button>
+    </div>
+
+    <div id="viewer" class="wbViewer"></div>
+
+</div>
+

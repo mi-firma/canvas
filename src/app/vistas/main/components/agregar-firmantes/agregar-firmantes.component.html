@@ -1,0 +1,44 @@
+<section class="main-section add-signers">
+    <!-- <div class="signers-header">
+        <h2 class="signers__title">¿Con qué certificados deseas firmar tus documentos?</h2>
+
+        <app-certificates-slider (selectedCertificate)="updateCertificate($event)" [certAdd]="true"></app-certificates-slider>
+    </div> -->
+
+    <div class="signers">
+        <h2 class="signers__title">¿Quién más debe firmar este documento?</h2>
+
+        <div class="signers__options">
+            <button *ngFor="let option of signerOptions"
+                    [class.selected]="choice === option.value"
+                    class="option"
+                    (click)="cambiarFirmante(option.value)"
+                    name="btncambiarFirmante"
+                    id="btncambiarFirmante"
+                    [disabled]="option.disabled">
+                <span class="icon icon-{{ option.icon }}"></span>
+                <p class="option__detail">{{ option.label }}</p>
+            </button>
+        </div>
+    </div>
+
+    <!-- TODO => Refactor de los componentes -->
+    <div class="signers__action">
+        <app-firmadorunico *ngIf="isSimple"
+                           [firmantes]="_firmantes"
+                           #formularioUnico></app-firmadorunico>
+
+        <app-firmadorlargo *ngIf="!isSimple"
+                           [firmantes]="_firmantes"
+                           #formularioLargo></app-firmadorlargo>
+    </div>
+    <div>
+    <!-- <div style="display: flex; justify-content: space-between;">
+        <button class="form__button" id="btnContinuar" name="btnContinuar" (click)="continuar(true)">Continuar pdftron</button> -->
+        <button *ngIf="!isThirdParty" class="form__button" id="btnContinuar" name="btnContinuar" (click)="continuar(true)">Continuar</button>
+        <button *ngIf="isThirdParty" 
+            class="form__button"
+            [ngStyle]="{'background-color' : thirdPartyColor, 'border-color' : thirdPartyColor }"
+            id="btnContinuar" name="btnContinuar" (click)="continuar(true)">Continuar</button>
+    </div>
+</section>

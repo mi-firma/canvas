@@ -1,0 +1,194 @@
+<div class="section-options">
+    <div class="header-options">
+        <div class="header-title">
+            <div class="btn-back">
+                <img class="img-arrow" src="../../../../assets/img/up.svg" alt="anterior">
+            </div>
+            <h1 class="title-options">Opciones básicas</h1>
+        </div>
+    </div>
+
+    <div class="horz-line mt-30"></div>
+    <div class="subheader-options mt-20">
+        <h2 class="subtitle-options">Expiración de documentos</h2>
+        <div class="btn-tools">
+            <button class="continue-btn-4 btn-options">Cancelar</button>
+            <button class="continue-btn-3 btn-options">Guardar</button>
+        </div>
+    </div>
+
+    <p class="info-text mt-20">Esta configuración se aplicará en la creación de documentos y plantillas.</p>
+
+    <div class="d-flex mt-20 check__center">
+        <p class="info-text mr-10">Los documentos enviados expiran en</p>
+        <input [(ngModel)]="expDays" maxlength="2" class="input-number" type="tel"
+            onkeydown="return ( event.ctrlKey || event.altkey || (47 < event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95 < event.keyCode && event.keyCode<106)|| (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40)|| (event.keyCode==46))">
+        <p class="info-text ml-10">días.</p>
+    </div>
+
+    <div class="d-flex mt-20 check__center">
+        <input [(ngModel)]="checkRemindeLastDay" type="checkbox" class="input-check">
+        <p class="info-text2 mr-10">Notificar al firmante 1 día antes del vencimiento</p>
+    </div>
+
+
+    <div class="horz-line mt-30"></div>
+
+    <div class="subheader-options mt-20">
+        <h2 class="subtitle-options">Recordatorios automáticos</h2>
+        <div class="btn-tools btn-right">
+            <button class="continue-btn-4 btn-options">Editar</button>
+        </div>
+    </div>
+
+    <p class="info-text mt-20">Esta configuración se aplicará en la creación de documentos y plantillas.</p>
+
+    <div class="d-flex mt-20 check__center">
+        <input [(ngModel)]="checkReminderDays" type="checkbox" class="input-check" (change)="changeCheckReminderDays()">
+        <p class="info-text mr-10">Enviar recordatorio automático en</p>
+        <input [(ngModel)]="reminderDays" class="input-number" type="tel" [disabled]="!checkReminderDays"
+            onkeydown="return ( event.ctrlKey || event.altkey || (47 < event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95 < event.keyCode && event.keyCode<106)|| (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40)|| (event.keyCode==46))">
+        <p class="info-text ml-10">días.</p>
+    </div>
+
+    <div class="d-flex mt-20 check__center div-column">
+        <div class="div-check">
+            <input [(ngModel)]="checkRepeatReminder" type="checkbox" class="input-check"
+                (change)="changeCheckReminderDays()">
+            <p class="info-text mr-10">Repetir recordatorios</p>
+        </div>
+        <div class="div-check">
+            <mat-select [disabled]="!checkRepeatReminder" class="my-select4 input-periodicity"
+                [value]="reminderPeridicity" [(ngModel)]="reminderPeridicity" placeholder="Periodicidad"
+                name=periodicidad id=periodicidad [ngModelOptions]="{standalone: true}">
+                <mat-option *ngFor="let periodicity of periodicitys; let i=index" [value]="periodicity">
+                    {{periodicity}}
+                </mat-option>
+            </mat-select>
+            <p class="info-text ml-10">hasta que se complete o expire el documento.</p>
+        </div>
+    </div>
+
+
+    <div class="horz-line mt-30"></div>
+
+    <div class="subheader-options mt-20">
+        <h2 class="subtitle-options">Firma Digital</h2>
+        <div class="btn-tools btn-right">
+            <button class="continue-btn-3 btn-options">Adquirir Firma Digital</button>
+        </div>
+    </div>
+
+    <p class="info-text mt-20">Adquiera, cargue y seleccione la Firma Digital que desea usar en los documentos firmados
+        en la plataforma.</p>
+
+
+    <div class="teams__table">
+        <div class="table__headers">
+            <span class="header__item header__item--sm">Producto</span>
+            <span class="header__item header__item--sm">Nombre Títular</span>
+            <span class="header__item header__item--sm">Tipo</span>
+            <span class="header__item header__item--sm">Generación</span>
+            <span class="header__item header__item--sm">Vencimiento</span>
+            <span class="header__item header__item--sm">Estado</span>
+            <span class="header__item header__item--sm">Acciones</span>
+        </div>
+
+        <div>
+            <div *ngFor="let signature of signatures; let i = index" class="team">
+                <div class="info__wrapper">
+                    <div class="team__info team__info--sm">
+                        <div class="team__signers team-action">
+                            <span>{{ signature.product }}</span>
+                        </div>
+                    </div>
+
+                    <p class="team__info team__info--sm">
+                        <span>{{signature.name}}</span>
+                    </p>
+
+                    <p class="team__info team__info--sm">
+                        <span>{{signature.type}}</span>
+                    </p>
+
+                    <p class="team__info team__info--sm">
+                        <span>{{signature.generation}}</span>
+                    </p>
+
+                    <p class="team__info team__info--sm">
+                        <span>{{signature.expiration}}</span>
+                    </p>
+
+                    <p class="team__info team__info--sm">
+                        <mat-slide-toggle [(checked)]="signature.state"></mat-slide-toggle>
+                    </p>
+
+                </div>
+
+
+                <div class="team__info team__info--sm team__actions actions-folders">
+
+                    <button class="button_menu menu-folders" id="{{i}}" (click)="menuOption(i,$event)">
+                        <span id="{{i}}" class="icon icon-more icon__more__small">
+                        </span>
+                    </button>
+
+                    <div (click)="menuOption(i,$event)" *ngIf="signature.menuOpen" class="menu__desplegable historial">
+                        <span class="icon icon-down-arrow menu__desplegable-icon__close"
+                            (click)="menuOption(i, $event)">
+                        </span>
+                        <div>
+                            <span class="icon icon-bin"></span>
+                            <p>Revocar</p>
+                        </div>
+                    </div>
+                    <div [class.menu__desplegable--mask]="signature.menuOpen"
+                        [class.menu__desplegable--mask__hidden]="!signature.menuOpen">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="add-button">
+        <span class="icon icon-add"></span> Cargar Firma Digital
+    </button>
+
+    <div class="horz-line mt-30"></div>
+
+    <div class="subheader-options mt-20">
+        <h2 class="subtitle-options">Almacenamiento</h2>
+        <div class="btn-tools btn-right">
+            <button class="continue-btn-4 btn-options">Editar</button>
+        </div>
+    </div>
+
+    <p class="info-text mt-20">Elige donde quieres almacenar tus documentos firmados, puede ser la plataforma
+        Cloud de tu preferencia o por medio de API:</p>
+
+    <p class="info-text mt-20">Almacenamiento cloud seleccionado:</p>
+
+    <div class="cloud__options mt-20">
+        <button *ngFor="let option of Options"
+                [class.selected]="choice === option.value"
+                class="option"
+                (click)="changeOption(option.value)"
+                [disabled]="option.disabled">
+                <img src="assets/img/icons/{{ option.icon }}.svg"
+                class="configuration__image"
+                alt="{{ option.icon }}">
+            <p class="option__detail">{{ option.label }}</p>
+        </button>
+    </div>
+
+
+    <div class="form__floating mt-30 d-flex">
+        <input class="form__input input-url" id="url" disabled="true" placeholder="URL de API" [(ngModel)]="url">
+        <label for="url">URL de API</label>
+        <button class="copy-btn" (click)="copyText(url)" value="click to copy" title="Copiar"><img
+                src="../../../../../assets/img/icons/gLgowh.svg"></button>
+    </div>
+
+    <p class="info-text mt-20">Para más información de almacenamiento en la nube por API’s, visita el <a
+            href="{{urlDev}}" target="blank">portal developer.</a></p>
+</div>

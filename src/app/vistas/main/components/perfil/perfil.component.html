@@ -1,0 +1,68 @@
+<section class="profile__section">
+    <div class="profile__header">
+        <h2 class="profile__title">Tu Perfil</h2>
+    </div>
+
+    <div class="user__info">
+        <div class="user__image">
+            <span class="icon icon-user"></span>
+            <!-- <button class="user__action">Subir foto</button> -->
+        </div>
+
+        <div class="user__main-info">
+            <p class="text-info-user">Persona Natural</p>
+            <p class="text-info-user">{{ user }}</p>
+            <!-- <p class="text-info-user-soft">CC {{ cedula }}</p> -->
+        </div>
+    </div>
+    <form [formGroup]="Usuario"
+          class="user__form">
+        <div class="form__row">
+            <div class="form__column">
+                <input class="form__input country-number"
+                       type="text"
+                       placeholder="+57"
+                       disabled>
+
+                <input class="form__input"
+                       type="text"
+                       name="celular"
+                       id="celular"
+                       formControlName="Celular"
+                       placeholder="Celular">
+            </div>
+
+            <input class="form__input"
+                   type="text"
+                   name="email"
+                   id="email"
+                   formControlName="Correo"
+                   placeholder="Correo">
+        </div>
+
+        <!-- <div class="form__row">
+            <input class="form__input"
+                   type="text"
+                   name="Ciudad"
+                   id="Ciudad"
+                   formControlName="Ciudad"
+                   placeholder="Ciudad">
+
+            <input class="form__input"
+                   type="text"
+                   name="Departamento"
+                   id="Departamento"
+                   formControlName="Departamento"
+                   placeholder="Departamento">
+        </div>
+
+        <div class="form__row">
+            <input class="form__input"
+                   type="text"
+                   name="Direccion"
+                   id="Direccion"
+                   formControlName="Direccion"
+                   placeholder="Dirección">
+        </div> -->
+    </form>
+</section>

@@ -1,0 +1,134 @@
+<div *ngIf="modalIsShowing" class="user__modal">
+
+    <div class="modal__content">
+        <div class="modal__inner__content">
+            <h3 class="modal__header">Hola {{sessionService.username}}: <span>Tienes documentos para firmar.</span></h3>
+        </div>
+        <div class="modal__footer">
+            <img class="top__logo" src="assets/img/logo-mi-firma.svg" alt="Logo MiFirma">
+
+            <div class="container__actions">
+              <div class="button__dropdown">
+                <button class="modal__action--outline" (click)="toggleOptionsSelection($event)">Más Opciones <span class="icon-down-arrow pl-2"></span></button>
+                <div class="options__dropdown" *ngIf="optionsIsShowing">
+                  <div>
+                    <p id="tool-option" (click)="modalRejectSign()">Rechazar firma</p>
+                  </div>
+                </div>
+              </div>
+              <button class="modal__action" (click)="toggleModalVisibility()">
+                Revisar y Firmar
+              </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section [class.no-scroll]="modalIsShowing" class="other__signers">
+    <div class="top__icon">
+        <img class="top__logo" src="assets/img/logo-mi-firma.svg" alt="Logo MiFirma">
+
+        <div class="container__actions">
+          <div class="button__dropdown" *ngIf="!hasSignedDocuments && !hasRejectedDisabled" >
+            <button class="modal__action--outline" (click)="toggleOptionsSelection($event)">Más Opciones <span class="icon-down-arrow pl-2"></span></button>
+            <div class="options__dropdown" *ngIf="optionsIsShowing">
+              <div>
+                <p id="tool-option" (click)="modalRejectSign()">Rechazar firma</p>
+              </div>
+            </div>
+          </div>
+
+          <button *ngIf="!hasSignedDocuments && !hasRejectedDisabled" class="continue-btn-2 sign__button" (click)="continue(false)">
+            Firmo y Acepto
+          </button>
+
+          <button *ngIf="false" class="continue-btn-2" (click)="toggleSignaturesListVisibility()">
+              Empezar
+          </button>
+        </div>
+
+    </div>
+
+    <div *ngIf="!hasSignedDocuments && !hasRejectedDisabled">
+
+        <div class="top__toolbar">
+            <p class="toolbar__text">
+                Selecciona la <span>Pluma</span>, configura tu firma manuscrita e <span>ingresa el PIN</span> de
+                seguridad enviado a tu celular y a tu correo electrónico.
+            </p>
+
+            <div>
+                <button class="toolbar__action" (click)="toggleSignaturesListVisibility()">
+                    <span class="icon icon-sign"></span>
+                </button>
+            </div>
+
+            <app-signatures-list [ngClass]="{'signer__firms': signaturesListIsShowing,'signer__firms__hidden': !signaturesListIsShowing}"
+                [maximumSignatures]="3" (signatureUriChanged)="onSignatureSelected($event)"
+                (signatureGuidChanged)="onSignatureGuidChange($event)">
+            </app-signatures-list>
+        </div>
+
+        <div *ngIf="documents.length > 1" class="bar-mult-docs">
+            <div class="algn-r-v3" >
+                <div class="disp-flex">
+                    <p class="text-mult-docs">Documento {{currentDocumentIndex+1}} de {{documents.length}}</p>
+                    <img *ngIf="currentDocumentIndex+1 >= 2" (click)="shiftDocs(-1)" class="left-arrow"
+                        src="../../../../../assets/img/icons/down-arrow-black.svg" alt="">
+                    <img *ngIf="currentDocumentIndex+1 < documents.length" (click)="shiftDocs(1)" class="right-arrow"
+                        src="../../../../../assets/img/icons/down-arrow-black.svg" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="pdf__content">
+            <div class="pdf__inner__content">
+                <div #viewerScroll>
+                    <div #viewer></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div *ngIf="hasSignedDocuments" class="signed__document">
+    <div class="doc__firmado">
+        <div class="otp__header">
+            <span class="icon icon-correct"></span>
+            <h3 class="success__title">¡DOCUMENTO FIRMADO!</h3>
+        </div>
+        <div class="opt__action">
+            <div class="opt__info">
+                <p class="opt__text">Gracias por usar Mi Firma.</p>
+                <p class="opt__text">Una vez todos los firmantes hayan terminado, recibirás un correo electrónico con
+                    una copia del documento.</p>
+            </div>
+            <button class="opt__button" [routerLink]="'/main/repositorio'">
+                Finalizar
+            </button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="hasRejectedDisabled" class="signed__document">
+  <div class="doc__rechazado">
+      <div class="otp__header">
+        <div class="img__container">
+          <img src="/assets/img/icon-information.svg">
+        </div>
+        <h3 class="success__title">¡DOCUMENTO NO DISPONIBLE!</h3>
+      </div>
+      <div class="opt__action">
+          <div class="opt__info">
+              <p class="opt__text">Para obtener más información sobre el documento, pónganse en contacto con el originador del mismo.</p>
+              <p class="opt__text f-bs mb-0">{{ documentOriginator.name }}</p>
+              <p class="opt__text"><a [href]="'mailto:' + documentOriginator.email ">{{ documentOriginator.email }}</a></p>
+          </div>
+          <button class="opt__button" [routerLink]="'/main/repositorio'">
+            Continuar
+          </button>
+      </div>
+  </div>
+</div>
+
+

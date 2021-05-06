@@ -1,0 +1,228 @@
+.templates__history {
+    padding: 0 10% 5%;
+    height: auto;
+    min-height: 100%;
+}
+
+.templates__top--nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 2% 0% 1%;
+}
+
+.tool-bar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #F4F4F4;
+    padding: 1% 10%;
+    margin-top: -5%;
+}
+
+.icon-item{
+    padding: 0px;
+}
+
+.input-icons img { 
+    position: absolute; 
+    left: 36%;
+    top: 10px;
+    cursor: pointer;
+} 
+
+.cancel_search{
+    position: absolute; 
+    left: 33%;
+    top: 12px;
+    cursor: pointer;
+    height: 10px;
+    width: 10px;
+}
+  
+.input-icons { 
+    width: 80%; 
+    position: relative;
+} 
+  
+.icon { 
+    padding: 10px; 
+    min-width: 40px; 
+} 
+  
+.input-field { 
+    width: 40%; 
+    padding: 10px; 
+} 
+
+.templates__title {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 500;
+    margin-bottom: 20px;
+    padding: 0% 2%;
+}
+
+.home__button {
+    width: 30px;
+    cursor: pointer;
+}
+
+.home__button i {
+    font-size: 30px;
+    color: #9e267d;
+}
+
+.templates-box {
+    padding: 5% 10%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.template-item {
+    position: relative;
+    border: 1px solid #c8c8c8;
+    text-align: center;
+    font-weight: 500;
+    border-radius: 5px;
+    width: 20%;
+    max-width: 140px;
+    height: 180px;
+    padding: 20px;
+    color: #3f3f3f;
+    text-decoration: none;
+    margin: 15px;
+    font-weight: 500;
+    font-size: 15px;
+    /*overflow: hidden;*/
+    transition: all .3s;
+}
+
+.create-template {
+    position: relative;
+    text-align: center;
+    font-weight: 500;
+    border-radius: 5px;
+    width: 20%;
+    max-width: 140px;
+    height: 180px;
+    padding: 20px;
+    color: #3f3f3f;
+    text-decoration: none;
+    margin: 15px;
+    font-weight: 500;
+    font-size: 15px;
+    /*overflow: hidden;*/
+    transition: all .3s;
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(156, 151, 156, 1);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(156, 151, 156, 1);
+    box-shadow: 0px 0px 8px 0px rgba(156, 151, 156, 1);
+    cursor: pointer;
+}
+.create-template-img{
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.template-item-img{
+    margin-bottom: 55px;
+}
+
+.create-template-txt{
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.button_menu {
+    border: none;
+    width: 20px;
+    cursor: pointer;
+    background-color: #fff;
+    margin-left: 10px;
+    position: absolute;
+    top: 0px;
+    right: 30px;
+}
+
+.menu__desplegable {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    z-index: 50;
+    width: 60%;
+    height: auto;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 12px;
+    right: 10px;
+    -webkit-box-shadow: 0px 1px 9px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 1px 9px 0px rgba(0,0,0,0.3);
+    box-shadow: 0px 1px 9px 0px rgba(0,0,0,0.3);
+}
+
+.menu-item{
+    padding: 10% 30%;
+    text-align: left;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.menu-item:hover{
+    background-color: #F4F4F4;
+}
+
+.icon__more__small {
+    font-size: 5px !important;
+}
+
+@media (max-width: 640px) {
+    .templates__history {
+        padding: 10% 25px;
+    }
+    .templates__top--nav {
+        position: relative;
+    }
+    .home__button {
+        right: 0;
+        top: 35px;
+    }
+    .templates__title {
+        font-size: 18px;
+    }
+    .templates-box {
+        flex-direction: column;
+    }
+
+    .template-item {
+        width: 80%;
+        margin: auto;
+        margin-bottom: 15px;
+    }
+    
+    .create-template {
+        width: 80%;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+
+    .input-field { 
+        width: 100%; 
+    } 
+
+    .input-icons img { 
+        left: 80%;
+    } 
+    .input-icons { 
+        width: 50%;
+    } 
+    .home__button i {
+        font-size: 20px;
+    }
+    .tool-bar {
+        margin-top: -2.5%;
+    }
+
+    .cancel_search{
+        left: 70%;
+    }
+}

@@ -1,0 +1,33 @@
+<div  class="modal__container">
+    <div (click)="cancelar()" class="close__button">
+      <i class="icon icon-error"></i>
+    </div>
+    <div class="modal__header">
+      <h1 class="modal__tittle">Editar Firmante</h1>
+    </div>
+    <div>
+      <form class="form__update"
+      [formGroup]="formUpdateSigner">
+        <div class="form__floating">
+            <input maxlength="50"
+                    autocomplete="email"
+                    name="email"
+                    type="email"
+                    id="correo"
+                    placeholder="Correo electrónico"
+                    formControlName="correo"
+                    [(ngModel)]="nuevoCorreo">
+            <label for="correo">Correo electrónico</label>
+        </div>
+        <div [ngClass]="{'inv':!((Email.invalid && Email.touched) || Email.dirty)}">
+            <small [ngClass]="{'inv':true}" class="text-error">*</small>
+            <small *ngIf="(Email.errors?.required)" class="text-error">El email es requerido</small>
+            <small *ngIf="(Email.errors?.email)" class="text-error">El email es inválido</small>
+        </div>
+      </form>
+      <div class="actions__container">
+        <button class="grey-btn" (click)="cancelar()">Cancelar</button>
+        <button class="continue-btn-2 update__button" (click)="actualizarEmail()">Actualizar</button>
+      </div>
+    </div>
+</div>

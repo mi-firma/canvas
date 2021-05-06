@@ -1,0 +1,22 @@
+.top__icon {
+    background-color: #FAFAFA;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(112,112,112,0.5);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(112,112,112,0.5);
+    box-shadow: 0px 0px 10px 0px rgba(112,112,112,0.5);
+}
+
+.top__logo {
+    display: block;
+    width: 145px;
+    margin: 0 20px;
+}
+
+@media (max-width: 640px) {
+    .top__logo {
+        margin: 0 auto;
+    }
+}

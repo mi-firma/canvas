@@ -1,0 +1,91 @@
+<section class="modal-firma">
+  <div class="disp-flex">
+    <div class="modal-firma__title-box">
+      <p class="modal-firma__title">Ayuda para firma de documentos</p>
+    </div>
+    <div (click)="cerrar()" class="algn-r cursor-pointer ">
+      <i class="icon icon-error"></i>
+    </div>
+  </div>
+  <div *ngIf="step==1" class="modal-firma__step">
+    <div class="disp-flex flex__center">
+      <div class="step__description">
+        <p class="step__title">1. Seleccionar firmante:</p>
+        <p class="step__action1">En el panel lateral izquierdo pulsa clic sobre los firmantes a configurar.</p>
+        <p class="step__action-mov">Pulsa el botón seleccionar firmantes y elige el firmante que deseas agregar.</p>
+      </div>
+      <div class="step__show">
+        <lottie-animation-view
+                    [options]="anim_1">
+        </lottie-animation-view>
+      </div>
+      <div class="step__show-mov">
+        <lottie-animation-view
+                    [options]="anim_mov_1">
+        </lottie-animation-view>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="step==2" class="modal-firma__step">
+    <div class="disp-flex flex__center">
+      <div class="step__description">
+        <p class="step__title">2. Configuración de la firma:</p>
+        <p class="step__action">Escribe, dibuja o carga una imagen y agrégala al documento.</p>
+      </div>
+      <div class="step__show">
+        <lottie-animation-view
+                    [options]="anim_2">
+        </lottie-animation-view>
+      </div>
+      <div class="step__show-mov">
+        <lottie-animation-view
+                    [options]="anim_mov_2">
+        </lottie-animation-view>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="step==3" class="modal-firma__step">
+    <div class="disp-flex flex__center">
+      <div class="step__description">
+        <p class="step__title">3. Posición de la firma:</p>
+        <p class="step__action">Arrastra el campo de firma por el documento PDF hasta la posición deseada y confírmala pulsando clic en el botón check.</p>
+      </div>
+      <div class="step__show">
+        <lottie-animation-view
+                    [options]="anim_3">
+        </lottie-animation-view>
+      </div>
+      <div class="step__show-mov">
+        <lottie-animation-view
+                    [options]="anim_mov_3">
+        </lottie-animation-view>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="step==4" class="modal-firma__step">
+    <div class="disp-flex flex__center">
+      <div class="step__description">
+        <p class="step__title">4. Firma el documento:</p>
+        <p class="step__action">Pulsa, clic sobre el botón ENVIAR, ingresa el código de seguridad enviado a tu celular o correo y firma tus documentos.</p>
+      </div>
+      <div class="step__show">
+        <lottie-animation-view
+                    [options]="anim_4">
+        </lottie-animation-view>
+      </div>
+      <div class="step__show-mov">
+        <lottie-animation-view
+                    [options]="anim_mov_4">
+        </lottie-animation-view>
+      </div>
+    </div>
+  </div>
+  <div class="disp-flex algn-m-v2">
+    <div *ngIf="step > 1" (click)="anterior(step)" class="btn-step__left">
+      <img class="img-arrow" src="../../../../assets/img/up.svg" alt="anterior">
+    </div>
+    <div *ngIf="step < 4" (click)="siguiente(step)" class="btn-step__right">
+      <img class="img-arrow" src="../../../../assets/img/up.svg" alt="siguiente">
+    </div>
+  </div>
+</section>

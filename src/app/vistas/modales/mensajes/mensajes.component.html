@@ -1,0 +1,18 @@
+<div class="modal__container">
+  <div (click)="Cancelar()" class="close__button">
+    <i class="icon icon-error"></i>
+  </div>
+  <div class="modal__header">
+    <h1 class="modal__tittle">{{tittle}}</h1>
+  </div>
+  <div>
+    <div class="modal__content">
+      <label>{{message}}</label>
+      <label>{{information}}</label>
+    </div>
+    <div class="actions__container">
+      <button class="grey-btn" (click)="Cancelar()">Cancelar</button>
+      <button class="continue-btn-2 update__button" (click)="Confirmar()">Aceptar</button>
+    </div>
+  </div>
+</div>

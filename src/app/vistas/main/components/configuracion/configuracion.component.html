@@ -1,0 +1,18 @@
+<section class="user-settings__section box__configuracion">
+    <div class="settigns__header">
+        <h2 class="settings__title">Configuración</h2>
+        <img class="tools-desktop" *ngIf="!isGrid" (click)="isGrid = true" src="assets/img/icons/grid-2.svg" alt="">
+        <img class="tools-desktop" *ngIf="isGrid" (click)="isGrid = false" src="assets/img/icons/grid-1.svg" alt="">
+    </div>
+    <div class="configuration__options"
+        [ngClass]="{'grid':isGrid, 'list':!isGrid}">
+        <a *ngFor="let option of configurationOptions"
+           [routerLink]="option.url"
+           class="configuration__item">
+            <img src="assets/img/icons/{{ option.icon }}.svg"
+                 class="configuration__image"
+                 alt="{{ option.icon }}">
+            {{ option.name }}
+        </a>
+    </div>
+</section>

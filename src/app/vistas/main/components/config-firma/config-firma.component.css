@@ -1,0 +1,70 @@
+.update__signer {
+  padding: 0 10%;
+}
+
+.header__container {
+  display: flex;
+}
+
+.home__button {
+  width: 30px;
+  cursor: pointer;
+}
+
+  .home__button i {
+    font-size: 30px;
+    color: #9e267d;
+    vertical-align: middle;
+  }
+
+.sign__button {
+  width: auto;
+  height: 30px;
+  padding: 5px 20px;
+  border-radius: 5px;
+  color: #ffffff; 
+  background-color: #9e267d;
+  border: none;
+  margin-right: 5px;
+  font-size: 12px;
+}
+
+.header__tittle {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  line-height: 2;
+  color: #373737;
+}
+
+.list__tittle {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 500;
+  margin-bottom: 6px;
+  margin-top: 20px;
+}
+
+@media (max-width: 640px) {
+  .header__container {
+    margin-top: 10px;
+  }
+
+  .header__tittle {
+    font-size: 14px;
+  }
+
+  .list__tittle {
+    font-size: 14px;
+  }
+
+  .update__signer {
+    padding: 10% 25px;
+  }
+
+  .sign__button {
+    margin-bottom: 10px;
+  }
+}
+

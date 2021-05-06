@@ -1,0 +1,80 @@
+<div>
+  <div>
+    <p class="receipt__title">Medio de pago</p>
+  </div>
+  <div class="mt-20">
+    <div class="mt-20 horz-line"></div>
+    <div class="mt-20">
+      <p class="receipt__title">Información de facturación</p>
+    </div>
+    <div class="mt-20">
+      <ng-container *ngIf="!isEditing">
+        <ng-container *ngFor="let address of addresses">
+          <div class="address-form">
+            <div (click)="setPreferredAddress(address)" class="address-fav">
+              <img *ngIf="!address.isDefault" src="../../../../../../assets/img/star-empty.svg" width="15" height="15">
+              <img *ngIf="address.isDefault" src="../../../../../../assets/img/star-full.svg" width="15" height="15">
+            </div>
+            <div>
+              <p class="address__detail">Dirección de {{ address.alias }}: </p>
+              <p class="address__input">{{ address.address1 }} / {{ address.city }} - {{ address.country }}</p>
+            </div>
+          </div>
+        </ng-container>
+        <div class="address-action">
+          <span (click)="toggleEditAddress()" class="edit__button"><i class="icon-edit edit__icon"></i>    Editar</span>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="mt-20">
+      <ng-container *ngIf="isEditing">
+        <div>
+          <form [formGroup]="addressesForm" (ngSubmit)="createAddress($event)">
+            <div class="form__row">
+              <input formControlName="alias" type="text" placeholder="Alias">
+            </div>
+            <div class="form__row">
+              <input formControlName="address1" type="text" placeholder="Dirección">
+            </div>
+            <div class="form__row">
+              <input formControlName="address2" type="text" placeholder="Dirección 2 (Opcional)">
+            </div>
+            <div class="form__row">
+              <input formControlName="country" type="text" placeholder="País">
+            </div>
+            <div class="form__row">
+              <input formControlName="departament" type="text" placeholder="Departamento/Estado">
+            </div>
+            <div class="form__row">
+              <input formControlName="city" type="text" placeholder="Ciudad">
+            </div>
+            <div class="form__row">
+              <input formControlName="isDefault" type="checkbox">
+              <label class="form__label">Usar esta dirección para envio de correspondencia</label>
+            </div>
+
+            <div class="form__actions">
+              <button (click)="toggleEditAddress()"
+                      class="form__button form__button--cancel"
+                      id="btnCancelar"
+                      name="btnCancelar">
+                  Cancelar
+              </button>
+
+              <button [disabled]="addressesForm.invalid"
+                      type="submit"
+                      class="form__button"
+                      id="btnGuardar"
+                      name="btnGuardar">
+                  Guardar
+              </button>
+          </div>
+          </form>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="mt-20 horz-line"></div>
+  </div>
+</div>

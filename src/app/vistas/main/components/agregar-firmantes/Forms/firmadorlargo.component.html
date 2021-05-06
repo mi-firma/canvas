@@ -1,0 +1,29 @@
+<div class="long-signers__wrapper">
+  <div class="header-signers">
+    <h3 class="signers__subtitle">Agrega los otros firmantes</h3>
+    <div class="d-flex">
+      <p class="text-slide-button" [ngClass]="{'selected-option': !inOrder}">Firmar en Cualquier Orden</p>
+      <mat-slide-toggle [(ngModel)]="inOrder" [ngClass]="{'selected-option': inOrder}">Firmar en orden</mat-slide-toggle>
+    </div>
+  </div>
+  <button class="add-button"
+          (click)="agregarCopia()">
+    <span class="icon icon-add"></span> Agregar firmante
+  </button>
+  <form class="signers__form mt-20" #formulario ngNativeValidate>
+    <div [dragula]="inOrder ? 'ordFirmantes' : null" [(dragulaModel)]="firmantes">
+      <div class="dragula-box" *ngFor="let firmante of firmantes; let i = index">
+        <div class="icon-move cursor-grab" *ngIf="inOrder">
+        </div>
+        <div class="number-fir" *ngIf="inOrder">{{i+1}}</div>
+        <input class="input__name" required [(ngModel)]="firmante.nombre" type="text" placeholder="Nombre" maxlength="30"
+               name={{firmante.nombre}} id={{firmante.nombre}} [ngModelOptions]="{standalone: true}">
+
+        <input class="input__email" required [(ngModel)]="firmante.correo" type="email" maxlength="50"
+               placeholder="Correo electrónico" name={{firmante.correo}} id={{firmante.correo}} [ngModelOptions]="{standalone: true}">
+
+        <div class="button__bin" (click)="eliminarCopia(i)"><i class="icon-bin"></i></div>
+      </div>
+    </div>
+  </form>
+</div>

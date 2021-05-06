@@ -1,0 +1,28 @@
+<div (click)="close()" class="close__button">
+    <i class="icon icon-error"></i>
+</div>
+<div class="l-folder_section">
+    <h2 class="l-folder_title">Mover Documento</h2>
+    <div class="list__folders">
+      <div *ngIf="raiz" [ngClass]="(statusRaiz)? ['item-folder', 'active']: ['item-folder']" (click)="selectItem('', true)">
+          <div>
+              <img class="document__icon" src="../../../../../assets/img/folder.svg" alt="">
+              Mi Carpeta Personal
+          </div>
+      </div>
+
+      <div [ngClass]="(item.envelopeId === folderId)? ['item-folder', 'active']: ['item-folder']" *ngFor="let item of folders; let i=index" (click)="selectItem(item.envelopeId, false)">
+          <div>
+              <img class="document__icon" src="../../../../../assets/img/folder.svg" alt="">
+              {{item.evelopeName}}
+          </div>
+      </div>
+    </div>
+    <div class="container__buttons">
+      <div class="icons-item" (click)="modalCreateFolder()" title="Crear Carpeta">
+        <img src="../../../../../assets/img/icon-folder.svg" alt="">
+        Carpeta Nueva
+      </div>
+      <button class="button-move" (click)="selectFolder()" [disabled]="folderId === '' && !statusRaiz">Mover</button>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+<div>
+  <ngb-tabset [destroyOnHide]="false"
+              class="sol-tab text__spacing">
+    <ngb-tab title="Escribir Firma">
+      <ng-template ngbTabContent>
+        <div class="container__tab">
+          <div class="p-2 border-soft">
+            <div class="written__signature__container"
+                 id="canvas">
+              <p class="text__written__signature"
+                 [style.font-family]="fontValue">
+                {{textSignature}}
+              </p>
+            </div>
+          </div>
+          <div class="form__written__signature">
+            <input class="form__input__written__signature"
+                   type="text"
+                   [id]="textSignature"
+                   [(ngModel)]="textSignature"
+                   placeholder="Ingrese su nombre"
+                   maxlength="45">
+            <div class="form__select__font">
+              <div *ngIf="fonts.length > 0">
+                <mat-select class="select__font"
+                            [(ngModel)]="fontValue">
+                  <mat-option *ngFor="let item of fonts"
+                              [style.font-family]="item.font"
+                              [value]="item.font">
+                    {{item.font}}
+                  </mat-option>
+                </mat-select>
+              </div>
+            </div>
+          </div>
+          <div class="algn-r mt-20">
+            <button class="continue-btn-2"
+                    (click)="saveNameSignature()">
+              Guardar
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Dibujar Firma">
+      <ng-template ngbTabContent>
+        <div class="container__tab signature-pad__container">
+          <signature-pad [options]="signaturePadOptions">
+          </signature-pad>
+          <div class="algn-r">
+            <button (click)="cleanSignaturePad()"
+                    class="grey-btn mt-20">
+              Borrar
+            </button>
+            <button (click)="saveDrawSignature()"
+                    class="continue-btn-2 mt-20 ml-10">
+              Guardar
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Subir Firma">
+      <ng-template ngbTabContent>
+        <div class="container__tab">
+          <div class="mt-20 mb-20">
+            <h2 class="label__accepted__files">Solo se permiten archivos PNG y JPG</h2>
+            <ngx-file-drop dropZoneClassName="drop-box-2"
+                           contentClassName="drop-box-cont2"
+                           dropZoneLabel=""
+                           (onFileDrop)="dropped($event)"
+                           multiple="false"
+                           accept=".png, .jpg">
+
+              <ng-template ngx-file-drop-content-tmp
+                           let-openFileSelector="openFileSelector">
+                <div class="cursor-pointer"
+                     style="height:inherit;"
+                     (click)="openFileSelector()">
+                </div>
+              </ng-template>
+            </ngx-file-drop>
+          </div>
+          <div class="algn-r">
+            <button class="continue-btn-2"
+                    id="continue-btn-2"
+                    name="continue-btn-2"
+                    (click)="saveUploadSignature()">
+              Guardar
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

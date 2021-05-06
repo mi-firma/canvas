@@ -1,0 +1,27 @@
+<section class="login-terms">
+    <div class="log-bar"></div>
+    <div class="terms_box">
+        <p class="terms_title">
+            Actualizamos nuestros
+        </p>
+        <div class="tab_box" id="terms">
+            <ngb-tabset [destroyOnHide]="false" class="tab-terms">
+                <ngb-tab *ngFor="let item of terminos; let i=index" title="{{item.termsType}}">
+                    <ng-template ngbTabContent>
+                        <div class="terms_text">
+                            <div id="termino{{i}}">
+
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+        </div>
+        <div class="button_box">
+            <button (click)="aceptar()" class="continue-btn-2">
+                Acepto
+            </button>
+        </div>
+    </div>
+
+</section>

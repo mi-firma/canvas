@@ -1,0 +1,113 @@
+<div class="files__container">
+    <div *ngIf="isThirdParty && thirdPartyLogoUrl">
+        <img class="cursor-pointer"
+           src="{{ thirdPartyLogoUrl }}"
+           alt="App Logo">
+    </div>
+    <div class="file__dropzone">
+        <div class="tool-bar">
+            <h2 class="dropzone__title3">Firma de documentos</h2>
+            <button *ngIf="!isThirdParty" (click)="templates()" class="continue-btn-2 d-flex button-temp">
+                <img class="template-item-img" src="../../../../../assets/img/icon-template.svg" alt="">
+                Usar Plantilla
+            </button>
+        </div>
+        <h2 class="dropzone__title2">Solo se permiten archivos PDF de hasta 19.9MB</h2>
+        <div id="dedos">
+            <ngx-file-drop id="drop" dropZoneClassName="drop-box"
+                           contentClassName="drop-box-cont"
+                           dropZoneLabel=""
+                           accept=".pdf"
+                           (onFileDrop)="dropped($event)">
+
+                <ng-template ngx-file-drop-content-tmp
+                             let-openFileSelector="openFileSelector">
+                    <div class="dropzone__content" (click)="openFileSelector()"></div>
+                </ng-template>
+            </ngx-file-drop>
+            <div *ngIf="scriptsLoaded" class="cloud-options">
+                <button class="oneDrive-button" (click)="oneDrive()">
+                    <img src="../../../../assets/img/icons/onedrive-1.svg" alt="">
+                    <p class="mt-10">OneDrive</p>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <div *ngIf="docs.length > 0"
+      class="upload__files">
+
+        <div class="documents__table">
+          <div class="table__headers">
+            <div class="tools__header" *ngIf="showCheckDocuments()">
+              <input type="checkbox" [checked]="isOneSelected()" (click)="checkDocs()">
+              <div (click)="toggleFilterSelection($event)" class="button__filter__container">
+                  <div [class.down-arrow]="!filterMenuIsShowing"
+                       [class.up-arrow]="filterMenuIsShowing"></div>
+              </div>
+              <div class="menu__desplegable filtro"
+                  *ngIf="filterMenuIsShowing">
+                  <div>
+                      <p id="tool-option" (click)="setSelectionDocs(true)">Todo</p>
+                  </div>
+                  <div>
+                      <p id="tool-option" (click)="setSelectionDocs(false)">Nada</p>
+                  </div>
+              </div>
+            </div>
+            <div class="alt__container">
+                <div class="alt__message">
+                    <p>Seleccionar</p>
+                </div>
+            </div>
+
+              <span class="dropzone__title">Documentos cargados</span>
+
+              <div class="create__folder">
+                <div>
+                  <input type="checkbox" [(ngModel)]="selectedCreateFolder">
+                  <span class="create__folder--label">Crear carpeta</span>
+                </div>
+
+                <div class="create__folder--input">
+                  <div class="form__floating">
+                    <input type="text" id="nameFolder" [(ngModel)]="nameFolder" placeholder="Nombre de carpeta" [disabled]="!selectedCreateFolder" [value]="!selectedCreateFolder? null: ''">
+                    <label for="nameFolder">Nombre de carpeta</label>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+
+            <div *ngFor="let document of docs; let i = index"
+                  class="document__item">
+                <input class="input-check" type="checkbox" [(ngModel)]="document.selected" *ngIf="selectedCreateFolder">
+                <span class="document__icon">PDF</span>
+                <span class="document__name">{{ document.name }}</span>
+                <button class="document__action"
+                        (click)="deleteDoc(i)"
+                        name="eliminarDoc"
+                        id="eliminarDoc">
+                    <span class="icon icon-bin"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="docs.length > 0">
+        <button *ngIf="!isThirdParty || !thirdPartyColor" class="form__button"
+                id="btnContinuar"
+                name="btnContinuar"
+                (click)="continue()">
+            Continuar
+        </button>
+        <button *ngIf="isThirdParty && thirdPartyColor" class="form__button"
+                [ngStyle]="{'background-color' : thirdPartyColor, 'border-color' : thirdPartyColor }"
+                id="btnContinuar"
+                name="btnContinuar"
+                (click)="continue()">
+            Continuar
+        </button>
+    </div>
+</div>

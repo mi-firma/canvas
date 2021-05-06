@@ -1,0 +1,49 @@
+<section class="api__section">
+    <div class="api__header">
+        <h2 class="api__title">Configuración de API</h2>
+        <div class="algn-r">
+            <a [routerLink]="'/main/menu'" class="home__button">
+                <i class='icon-home'></i>
+            </a>
+        </div>
+    </div>
+    <div class="api-info">
+        <div class="form__floating mt-50">
+            <input class="form__input"
+                    id="url"
+                    disabled="true"
+                    placeholder="URL de API"
+                    [(ngModel)]="url">
+            <label for="url">URL de API</label>
+            <button class="copy-btn" (click)="copyText(url)" value="click to copy" title="Copiar"><img src="../../../../../assets/img/icons/gLgowh.svg"></button>
+        </div>
+        <div class="form__floating mt-20">
+            <input class="form__input"
+                    id="token"
+                    disabled="true"
+                    placeholder="Basic Token"
+                    [(ngModel)]="token">
+            <label for="token">Basic Token</label>
+            <button class="copy-btn" (click)="copyText(token)" value="click to copy" title="Copiar"><img src="../../../../../assets/img/icons/gLgowh.svg"></button>
+        </div>
+        <p class="text-api">Recuerda que tu contraseña es la misma que usas para ingresar a MiFirma</p>
+        <!-- <div class="menu_desp" (click)="despMenu()">
+            <p class="text-desp">Generar una nueva contraseña</p>
+            <img *ngIf="!menuDesplegado" src="../../../../../assets/img/icons/down-arrow.svg">
+            <img *ngIf="menuDesplegado" src="../../../../../assets/img/icons/up-arrow.svg">
+        </div> -->
+        <div class="form__floating mt-20" *ngIf="menuDesplegado" >
+            <input class="form__input"
+                    id="key"
+                    placeholder="Contraseña de acceso"
+                    [(ngModel)]="key">
+            <label for="key">Contraseña de acceso</label>
+            <button class="copy-btn" (click)="copyText(key)"value="click to copy" title="Copiar"><img src="../../../../../assets/img/icons/gLgowh.svg"></button>
+        </div>
+        <div class="mt-20" *ngIf="menuDesplegado">
+            <button (click)="actualizar()" class="continue-btn-2 ">Actualizar</button>
+        </div>
+
+        <p class="text-api">Para más información de API’s, visita el <a href="{{urlDev}}" target="blank">portal developer.</a></p>
+    </div>
+</section>

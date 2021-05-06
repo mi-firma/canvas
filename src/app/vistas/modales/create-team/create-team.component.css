@@ -1,0 +1,55 @@
+.c-folder_section{
+    padding: 5% 20%;
+}
+
+.c-folder_title{
+    text-align: center;
+    font-size: 18px;
+    color: #9E267C;
+    margin: 10px;
+    font-weight: 600;
+}
+
+.close__button {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.box-options{
+    display: flex;
+    margin: auto;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.btn-options{
+    margin-right: 20px;
+    margin-bottom: 0;
+}
+
+.btn-create{
+    width: 100px;
+}
+
+@media (max-width: 640px) {
+
+    .box-options{
+        flex-direction: column;
+    }
+
+    .btn-options{
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+    }
+
+    .btn-create{
+        margin: auto;
+        margin-top: 10px;
+        width: 50%;
+        padding: 10px;
+    }
+}

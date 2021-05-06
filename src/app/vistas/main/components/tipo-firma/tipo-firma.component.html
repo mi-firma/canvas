@@ -1,0 +1,39 @@
+<section class="sign-type__section">
+    <div class="title_text_sign">
+        <p>
+            ¿Cómo deseas firmar tus documentos?
+        </p>
+    </div>
+    <div class="main_options-sign">
+        <a *ngFor="let option of options"
+           [routerLink]="option.url"
+           class="options-sign"
+           [attr.id]="option.id"
+           [class.disabled]="option.disabled">
+            <div *ngIf="option.disabled"
+                 class="no-sign-bar">
+                <span>
+                   Próximamente
+                </span>
+            </div>
+            <div class="sign-option_content">
+                <img src="assets/img/{{ option.icon }}.svg"
+                 class="option__image"
+                 alt="{{ option.icon }}">
+                 <div class="text_option">
+                     <p class="name_option"
+                     [class.disabled]="option.disabled">
+                        {{ option.name }}
+                     </p>
+                     <p class="description_option"
+                     [class.disabled]="option.disabled">
+                        {{ option.description }}
+                     </p>
+                 </div>
+            </div>
+            <div class="options-sign-hover">
+                {{ option.hover}}
+            </div>
+        </a>
+    </div>
+</section>

@@ -1,0 +1,32 @@
+<div (click)="close()" class="close__button">
+    <i class="icon icon-error"></i>
+</div>
+<div class="modal-plant-title">
+    Crear Plantilla
+</div>
+<div class="options-fileDrop">
+    
+    <div class="text_templates">
+        Selecciona o sube solo un documento para la creación de tu plantilla.
+    </div>
+
+    
+    <ngx-file-drop dropZoneClassName="drop-box-plant"
+                   contentClassName="drop-box-cont-plant"
+                   dropZoneLabel=""
+                   accept=".pdf"
+                   multiple="false"
+                   (onFileDrop)="dropped($event)">
+
+        <ng-template ngx-file-drop-content-tmp
+                     let-openFileSelector="openFileSelector">
+            <div class="dropzone__content" (click)="openFileSelector()"></div>
+        </ng-template>
+    </ngx-file-drop>
+    <div *ngIf="scriptsLoaded" class="cloud-options">
+        <button class="oneDrive-button" (click)="oneDrive()">
+            <img src="../../../../assets/img/icons/onedrive-1.svg" alt="">
+            <p class="mt-10">OneDrive</p>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+<body class="container" style="overflow: auto;">
+
+    <h1>
+        <span class="icon icon-down-arrow"></span>
+        <strong>Personalizar correos</strong>
+    </h1>
+
+    <hr class="mt-4">
+
+    <div class="container mt-3">
+        <div class="row">
+
+            <!-- Inicio Formulario -->
+            <div class="col-sm">
+                <!-- <form (ngSubmit)="saveChanges()" [formGroup]="formTemplateMail"> -->
+                <!-- <div class="row divLogo" [style.opacity]="settingColor ? '0' : '1'" [style.visibility]="settingColor ? 'hidden' : 'visible'"> -->
+                <div class="row divLogo" [style.opacity]="settingColor ? '0' : '1'" [style.display]="settingColor ? 'none' : 'flex'">
+                    <div class="col">
+                        <h2><strong>Incluir tu logo:</strong></h2>
+                        <br>
+                        <div class="card">
+                            <img *ngIf="!tempImage" alt="Logo" class="imgs cursor-pointer img-responsive" src="assets/img/logo-mi-firma.svg">
+                            <img *ngIf="tempImage" alt="Logo" class="imgs cursor-pointer img-responsive" [src]="tempImage">
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <small>El archivo que adjuntes debe cumplir con estas caracteristicas:</small>
+                        <br><br>
+                        <ul class="ml-4">
+                            <li><small>Peso máximo 100 kb</small> </li>
+                            <li><small>Formatos aceptados JPG y PNG</small></li>
+                        </ul>
+                        <br><br>
+                        <button class="grey-btn" (click)="file.click()">Cambiar Logo</button>
+                        <input type="file" #file name="upload" class="upload" title="Carga un archivo" (change)="loadIamgeLogo($event)">
+                    </div>
+                </div>
+                <br>
+                <form (ngSubmit)="saveChanges()" [formGroup]="formTemplateMail">
+                    <strong>Selecciona los colores de los botones:</strong>
+                    <br><br>
+                    <div class="form-inline">
+                        <small class="col-3"> Color primario: </small>
+                        <input type="text" class="form__input col-3" formControlName="colorBase" (click)="openColorPicker('colorBase')">
+                        <div class="ml-3 cursor-pointer div-colors" (click)="openColorPicker('colorBase')" [ngStyle]="{ 'background-color': formTemplateMail.get('colorBase').value }">
+                        </div>
+                    </div>
+
+                    <div class="form-inline mt-2">
+                        <small class="col-3">Color texto:</small>
+                        <input type="text" class="form__input col-3" formControlName="colorSecundario" (click)="openColorPicker('colorSecundario')">
+                        <div class="ml-3 cursor-pointer div-colors" (click)="openColorPicker('colorSecundario')" [ngStyle]="{ 'background-color': formTemplateMail.get('colorSecundario').value }">
+                        </div>
+                        <button class="continue-btn-2 m-3" [hidden]="!settingColor" (click)="settingColor = false">
+                            Cerrar paleta
+                            <span class="icon icon-down-arrow"></span>
+                        </button>
+                    </div>
+                    <!-- style="width: 60%;
+                        height: 20rem;
+                        position: sticky;"  -->
+                    <!-- <div style="width: 220px; display: inline-block; margin-bottom: 1rem;">
+                        <color-sketch [color]="color" [hidden]="!settingColor" (onChangeComplete)="onChangeColorComplete($event)"></color-sketch>
+                    </div> -->
+                    <color-photoshop [color]="color" [hidden]="!settingColor" (onChangeComplete)="onChangeColorComplete($event)"></color-photoshop>
+
+                    <br>
+
+
+                    <strong>Texto del footer:</strong>
+                    <textarea rows="6" class="form-control-area" rows="4" formControlName="footer"></textarea>
+                    <div *ngIf="formTemplateMail.get('footer').errors && (formTemplateMail.get('footer').dirty || formTemplateMail.get('footer').touched)">
+                        <p class="text-danger" *ngIf="formTemplateMail.get('footer').hasError('required')">Campo requerido</p>
+                        <p class="text-danger" *ngIf="formTemplateMail.get('footer').hasError('maxlength')">Máximo 200 Caracteres</p>
+                    </div>
+                    <div class="text-right">
+                        <button class="grey-btn m-3" (click)="deleteTemplate()">Restaurar</button>
+                        <button class="continue-btn-2" type="submit" [disabled]="formTemplateMail.invalid">Guardar</button>
+                    </div>
+
+                </form>
+
+            </div>
+            <!-- Fin Formulario -->
+
+            <!-- Inicio vista previa -->
+            <div class="col-sm">
+                <strong>Vista previa:</strong>
+
+                <div class="card text-center p-4 mt-3">
+                    <div class="container">
+
+                        <img *ngIf="!tempImage" alt="Logo" class="imgs cursor-pointer img-responsive m-1" src="assets/img/logo-mi-firma.svg">
+                        <img *ngIf="tempImage" alt="Logo" class="imgs cursor-pointer img-responsive m-1" [src]="tempImage">
+                        <hr>
+                        <p class="mt-3">Hola Edison</p>
+                        <!-- <p class="m-3">{{model.Textbody}}</p> -->
+
+                        <button class="continue-btn-2 m-4" [ngStyle]="{ 'color': formTemplateMail.get('colorSecundario').value, 'background-color': formTemplateMail.get('colorBase').value, 'border-color': formTemplateMail.get('colorBase').value }">
+                            Revisar Firmar
+                        </button>
+
+                        <p class="mb-1">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+                        <small class="m-5">Desarrollado por:</small>
+
+                    </div>
+                </div>
+                <div class="mt-3 p-3 border bg-light text-left">
+                    <small>{{formTemplateMail.get('footer').value}}</small>
+                </div>
+            </div>
+            <!-- Fin Vista Previa -->
+
+        </div>
+    </div>
+</body>

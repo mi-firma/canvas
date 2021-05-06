@@ -1,0 +1,29 @@
+.signature__row {
+  width: 100%;
+}
+
+.signature__thumbnail {
+  height: auto;
+  min-height: 25px;
+  max-height: 50px;
+  width: auto;
+  cursor: pointer;
+}
+
+.bottom__menu {
+  margin-top: 10px;
+}
+
+
+.add__signature__button {
+  display: flex;
+  color: #707070;
+  background-color: transparent;
+  font-size: 12px;
+  border: none;
+}
+
+  .add__signature__button .icon {
+    font-size: 15px;
+    margin-right: 10px;
+  }

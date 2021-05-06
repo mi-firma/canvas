@@ -1,0 +1,141 @@
+<!--BARRA SUPERIOR-->
+<section class="app__navbar">
+  <button *ngIf="!isThirdParty" class="menu__button app__menu"
+          (click)="toggleAppMenu()">
+    <span class="icon icon-menu"></span>
+  </button>
+
+  <div *ngIf="!isThirdParty" class="navbar__logo">
+    <a class="logo__link" [routerLink]="mainMenu">
+      <img class="cursor-pointer"
+           src="assets/img/logo-mi-firma.svg"
+           alt="App Logo">
+    </a>
+  </div>
+
+  <div *ngIf="isThirdParty && thirdPartyLogoUrl" class="navbar__logo">
+    <a class="logo__link">
+      <img class="cursor-pointer"
+           src="{{ thirdPartyLogoUrl }}"
+           alt="App Logo">
+    </a>
+  </div>
+
+  <div class="user__content">
+    <div *ngIf="!isThirdParty" class="user__menu">
+      <div  #userMenu>
+        <button class="menu__button user__menu-button"
+                (click)="toggleUserMenu()">
+          <span class="button__username">{{ user }}</span>
+          <span class="icon icon-down-arrow"></span>
+        </button>
+
+        <button  class="menu__button menu__button--mobile"
+                (click)="toggleUserMenu()">
+          <span class="icon icon-more icon__more__small"></span>
+        </button>
+      </div>
+
+      <ul class="user__menu-content"
+          [class.show]="showProfileMenu">
+        <li *ngFor="let option of userMenuOptions"
+            [class.user__menu__item--border]="option.name === 'Configuración'"
+            class="user__menu__item">
+          <a class="menu__button user__menu__button"
+             [class.disabled]="option.disabled"
+             [routerLink]="option.url">
+            <span class="icon icon-{{ option.icon }}"></span> {{ option.name }}
+          </a>
+        </li>
+        <!-- Mobile buttons -->
+        <li class="user__menu__item mobile__button">
+          <a href="https://ayuda.olimpiait.com/mi-firma"
+             target="_blank"
+             class="menu__button user__menu__button">
+            <span class="icon icon-info"></span> Información
+          </a>
+        </li>
+        <li #notificationsMobile class="user__menu__item mobile__button">
+          <button class="menu__button user__menu__button"
+                  (click)="toggleNotifications()">
+            <span class="icon icon-bell"></span> Notificaciones
+          </button>
+        </li>
+        <li class="user__menu__item">
+          <button class="menu__button user__menu__button"
+                  (click)="logout()">
+            <span class="icon icon-logout"></span> Cerrar sesión
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <a *ngIf="!isThirdParty" href="https://ayuda.olimpiait.com/mi-firma"
+       target="_blank"
+       class="info__link">
+      <span class="icon icon-info"></span>
+    </a>
+
+    <div *ngIf="!isThirdParty" #notifications>
+      <button class="menu__button notifications__button"
+              (click)="toggleNotifications()">
+        <span class="icon icon-bell"></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!--BARRA NOTIFICACIONES-->
+
+<div *ngIf="!isThirdParty" [ngClass]="{'notificaciones':notificationsAreShowing, 'notificaciones-hidden':!notificationsAreShowing}"
+     class="border-noradius">
+  <div class="cont-notif">
+    <p class="f-bs">Notificaciones</p>
+    <div class="horz-line mt-30"></div>
+
+    <!--
+    <div class="mt-20" *ngFor="let notification of notifications; let i = index">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title class="notf-title">DOCUMENTO COMPLETADO</mat-card-title>
+                <span (click)="removeNotification(i)" class="algn-r-v3 cursor-pointer">x</span>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    El documento Terminos y Condiciones esta completo.
+                </p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    -->
+  </div>
+</div>
+
+<!--DATA DE BARRA IZQUIERDA-->
+<div [class.show-menu]="showAppMenu"
+     class="app__dashboard-menu">
+
+  <div class="app__menu__content">
+    <div class="app__menu__logo">
+      <img class="logo cursor-pointer"
+           src="assets/img/logo-mi-firma.svg"
+           alt="App Logo">
+    </div>
+    <ul class="app__menu__items">
+      <li *ngFor="let item of appMenuItems"
+          class="app__menu__item"
+          (click)="toggleAppMenu()"
+          routerLinkActive="item--active">
+        <a [routerLink]="[item.url]"
+           [class.disabled]="item.disabled"
+           class="app__menu__link">
+          <span class="icon {{ item.icon }}"></span>
+          <span class="link-text">{{ item.name }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="menu__shadow"
+       (click)="toggleAppMenu()"></div>
+</div>

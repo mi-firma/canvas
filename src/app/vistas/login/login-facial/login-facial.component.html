@@ -1,0 +1,23 @@
+<div class="log-bar"></div> 
+<section class="rcs-validation__wrapper">
+  <h2 class="welcome-text"><span>¡Hola {{user}}!,</span> Bienvenido</h2>
+  <ng-container *ngIf="iframeUrl && completeValidation">
+    <!-- <div class="rcs__info-text">
+      Por favor, realiza la siguiente
+      <a
+      [href]="iframeUrl.url"
+      target="_blank"
+      class="rcs-link">Validación biométrica</a>
+      para completar el registro y al finalizar da click en "Continuar".
+    </div> -->
+
+    <iframe [src]="iframeUrl | safeUrl"
+            class="rcs__iframe"
+            allow="camera"
+            frameborder="0"></iframe>
+
+    <!-- <button
+      (click)="validateFinishRequest(iframeUrl.procesoConvenioGuid)"
+      class="continue-btn-2 rcs-continue">Siguiente</button> -->
+  </ng-container>
+</section>

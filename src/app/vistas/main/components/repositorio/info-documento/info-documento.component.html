@@ -1,0 +1,99 @@
+<div class="document__detail">
+  <div class="document__header">
+    <h3 class="document__title">
+      {{ documento.estadoProcesoNombre }} -
+      <span class="document__name"> {{ documento.documentoNombre }}</span>
+    </h3>
+
+    <div class="header__actions">
+      <button class="document__action check"
+              (click)="descargar()">
+        Descargar
+      </button>
+      <button [routerLink]="'/main/repositorio'"
+              id="btnCerrar"
+              class="document__action back">
+        Volver
+      </button>
+    </div>
+  </div>
+  
+  <div class="document__details">
+    <div class="detail__headers">
+      <h5 class="header header--xs">Orden</h5>
+      <h5 class="header header-s">Fecha</h5>
+      <h5 class="header header--lg">Firmante</h5>
+      <h5 class="header header--sm">Estado</h5>
+      <h5 class="header header--xs">Acciones</h5>
+    </div>
+    <div class="detail__content">
+      <div *ngFor="let signer of signers; let i = index"
+           class="document__signer">
+        <div class="info__wrapper">
+          <p class="signer__info signer__info--xs">{{ i + 1 }}</p>
+          <p class="signer__info signer__info-s">{{ signer.ejecucionFirmaGrafoFecha | date : 'dd-MM-yyyy - hh:mm:ss a' }}</p>
+          <p class="signer__info signer__info--lg">
+            {{ signer.personaPrimerNombre }}
+            <span>{{ signer.personaCorreo }}</span>
+          </p>
+          <p [class.complete]="signer.estadoSeguimientoFirmaNombre == 'Firmado'"
+             [class.pending]="signer.estadoSeguimientoFirmaNombre === 'Pendiente de firma'"
+             class="signer__info signer__info--sm">{{ signer.estadoSeguimientoFirmaNombre }}</p>
+          <div class="signer__actions signer__info--menu" *ngIf="signer.estadoSeguimientoFirmaId == 4 && (documento.tipoSolicitud == 'Mi Solicitud' || documento.tipoSolicitud =='Mis Solicitudes') ">
+            <button class="button_menu"
+                    
+                    (click)="menuOption(i,$event)">
+              <span
+                    class="icon icon-more icon__more__small">
+              </span>
+            </button>
+
+            <div (click)="menuOption(i,$event)"
+                  *ngIf="signer.menuOpen"
+                  class="menu__desplegable-firmantes">
+              <span class="icon icon-down-arrow menu__desplegable-icon__close"
+                    (click)="menuOption(i, $event)">
+              </span>
+              <div>
+                <span class="icon icon-edit"></span>
+                <p (click)="editarFirmante(signer)">Editar Email</p>
+              </div>
+              <div *ngIf="!signer.esOrdenado">
+                <span class="icon icon-send"></span>
+                <p (click)="recordatorio(signer)">Enviar recordatorio</p>
+              </div>
+              <div>
+                <span class="icon icon-bin"></span>
+                <p (click)="eliminarFirmante(signer)">Eliminar Firmante</p>
+              </div>
+            </div>
+            <div [class.menu__desplegable--mask]="signer.menuOpen"
+                         [class.menu__desplegable--mask__hidden]="!signer.menuOpen">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isDownloading" class="modal-download">
+  <div class="modal-download-box">
+      <div class="algn-m">
+          <img src="../../../../../../assets/img/icon-information.svg" alt="icon-alert">
+      </div>
+      <div class="text_modal-download">
+          <p>
+              Al <span>descargar tus documentos</span> te recomendamos abrirlos con el programa 
+              <span>Adobe Acrobat Reader</span> el cual te permitirá visualizar todas las 
+              <span>propiedades de la firma y el PDF.</span>
+          </p>
+      </div>
+      <div class="algn-m">
+          <button (click)="closeModal()"
+              class="form__button continue-btn-2">
+          Cerrar
+      </button>
+      </div>
+  </div>
+</div>

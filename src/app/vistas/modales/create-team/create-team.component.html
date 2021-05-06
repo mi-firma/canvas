@@ -1,0 +1,21 @@
+<div (click)="close()" class="close__button">
+    <i class="icon icon-error"></i>
+</div>
+<div class="c-folder_section">
+    <h2 *ngIf="!update" class="c-folder_title">Crear Equipo</h2>
+    <h2 *ngIf="update" class="c-folder_title">Nombre Nuevo</h2>
+    <div class="form__floating mt-20">
+        <input id='carpeta' type="text" placeholder="Nombre Área" [(ngModel)]="nameArea" maxlength="50" onpaste="return false;" (keydown)="myFunction($event)">
+        <label for="carpeta">Nombre Área</label>
+    </div>
+    <div class="algn-m-v2 box-options">
+        <button *ngIf="!update" (click)="create()" class="form__button continue-btn-2 btn-create">
+            Guardar
+        </button>
+
+        <button *ngIf="update" (click)="create()" class="form__button continue-btn-2 btn-create">
+            Actualizar
+        </button>
+    </div>
+</div>
+

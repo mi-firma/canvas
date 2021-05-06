@@ -1,0 +1,39 @@
+.login-terms {
+    width: 100%;
+    height: 100%;
+}
+
+.terms_box {
+    padding: 8% 20%;
+}
+
+.terms_title {
+    text-align: center;
+    color: #3F3F3F;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.tab_box {
+    padding: 5% 0%;
+}
+
+.terms_text {
+    max-height: 50vh;
+    overflow-y: scroll;
+}
+
+.button_box {
+    text-align: right;
+}
+
+@media (max-width: 640px) {
+    .terms_box {
+        padding: 8% 8%;
+    }
+
+    .terms_text {
+        max-height: 60vh;
+        overflow-y: scroll;
+    }
+}

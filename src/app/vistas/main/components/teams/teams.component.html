@@ -1,0 +1,72 @@
+<div class="section-teams">
+    <div class="header-teams">
+        <div class="header-title">
+            <div class="btn-back" (click)="goBack()">
+                <img class="img-arrow" src="../../../../assets/img/up.svg" alt="anterior">
+            </div>
+            <h1 class="title-teams">Equipos de trabajo</h1>
+        </div>
+        <div>
+            <button class="continue-btn-3" (click)="createTeam()">Crear Equipo</button>
+        </div>
+    </div>
+
+    <div class="horz-line mt-30"></div>
+
+    <div class="teams__table">
+        <div class="table__headers">
+            <span class="header__item header__item--lg">Área</span>
+            <!-- <span class="header__item header__item--sm">Usuarios</span> -->
+            <span class="header__item header__item--sm">Acciones</span>
+        </div>
+
+        <div>
+            <div *ngFor="let team of teams; let i = index" class="team">
+                <div class="info__wrapper">
+                    <div class="team__info team__info--lg">
+                        <div (click)="openTeam(team.id,team.name)" class="team__signers team-action">
+                            <span>{{ team.name }}</span>
+                        </div>
+                    </div>
+
+                    <!-- <p class="team__info team__info--sm">
+                        <span>{{team.usuarios}}</span>
+                    </p> -->
+
+                </div>
+
+
+                <div class="team__info team__info--sm team__actions actions-folders">
+
+
+
+                    <button class="button_menu menu-folders" id="{{i}}" (click)="menuOptionTeams(i,$event)">
+                        <span id="{{i}}" class="icon icon-more icon__more__small">
+                        </span>
+                    </button>
+
+                    <div (click)="menuOptionTeams(i,$event)" *ngIf="team.menuOpen" class="menu__desplegable historial">
+                        <span class="icon icon-down-arrow menu__desplegable-icon__close"
+                            (click)="menuOptionTeams(i, $event)">
+                        </span>
+                        <div (click)="inviteUser(team.id)">
+                            <span class="icon icon-detail"></span>
+                            <p>Invitar</p>
+                        </div>
+                        <div (click)="editTeam(team.id)">
+                            <span class="icon icon-download-3"></span>
+                            <p>Editar</p>
+                        </div>
+                        <div (click)="deleteTeam(team.id)">
+                            <span class="icon icon-bin"></span>
+                            <p>Eliminar</p>
+                        </div>
+                    </div>
+                    <div [class.menu__desplegable--mask]="team.menuOpen"
+                        [class.menu__desplegable--mask__hidden]="!team.menuOpen">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

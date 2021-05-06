@@ -1,0 +1,64 @@
+<section class="main__plan">
+  <h2 *ngIf="maxDiscount > 0" class="plan__title">¡Compra un plan <span>Personal</span> y obtén hasta un <span>{{ maxDiscount }}% de descuento</span></h2>
+  <h2 class="plan__subtitle">En cuestión de minutos y sin salir de casa, firma cualquier documento. Tenemos planes que se adaptan a tus necesidades.</h2>
+
+  <div class="plan__switch">
+    <p>Planes Personales</p>
+    <label class="switch">
+      <input [(ngModel)]="isB2B" type="checkbox" (change)="planCategoryChanged()">
+      <span class="slider round"></span>
+    </label>
+    <p>Planes Corporativos</p>
+  </div>
+
+  <ng-container *ngIf="isB2B">
+    <div class="plan__options">
+      <app-plan-slider 
+        [plans]="plansB2B" 
+        [config]="slideConfig" 
+        (planSelected)="purchase($event)"
+        (slideChanged)="updatePlanIndex($event)">
+      </app-plan-slider>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!isB2B">
+    <div class="plan__options">
+      <app-plan-slider
+        [plans]="plansB2C" 
+        [config]="slideConfig" 
+        (planSelected)="purchase($event)">
+      </app-plan-slider>
+    </div>
+  </ng-container>
+</section>
+<section class="sub__plan">
+  <div class="plan__details">
+    <h2 class="plan__title">Conoce las <span>funciones</span> que tenemos para ti</h2>
+
+    <div class="plan__options--detail">
+      <ng-container *ngFor="let plan of plans; let i = index">
+        <ng-container *ngIf="i >= planIndex && i < planIndex + plansPerPage">
+          <div class="plan__free">
+            <div class="title_plan-free">
+              {{ plan.name }}
+            </div>
+            <div class="plan__info-free">
+              <p class="plan-features-text">Características del plan</p>
+              <div class="features-list">
+                <ul>
+                  <ng-container *ngFor="let feature of plan.featuresDto">
+                    <li>{{ feature.description }}</li>
+                  </ng-container>
+                </ul>
+              </div>
+              <button class="plan-action" (click)="purchase(plan)">
+                Comprar plan
+              </button>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</section>

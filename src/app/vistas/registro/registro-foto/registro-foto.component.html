@@ -1,0 +1,26 @@
+<app-top-icon></app-top-icon>
+<section class="rcs-validation__wrapper">
+  <h2 class="welcome-text"><span>Queremos conocerte, </span> te tomaremos una fotografía.</h2>
+  <ng-container *ngIf="iframeUrl$ | async as iframeUrl">
+    <!-- <div class="rcs__info-text">
+      Por favor, realiza la siguiente
+      <a
+      [href]="iframeUrl.url"
+      target="_blank"
+      class="rcs-link">Validación biométrica</a>
+      para completar el registro y al finalizar da click en "Continuar".
+    </div> -->
+    <div class="rcs-link">
+      <h2>Si no tienes acceso a la cámara, Puedes continuar el proceso desde tu celular!</h2>
+    </div>
+
+    <iframe [src]="iframeUrl.url | safeUrl"
+            class="rcs__iframe"
+            allow="camera"
+            frameborder="0"></iframe>
+
+    <!-- <button
+      (click)="validateFinishRequest(iframeUrl.procesoConvenioGuid)"
+      class="continue-btn-2 rcs-continue">Siguiente</button> -->
+  </ng-container>
+</section>

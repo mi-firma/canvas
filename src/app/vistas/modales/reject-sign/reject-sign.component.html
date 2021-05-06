@@ -1,0 +1,32 @@
+<div class="modal__container">
+  <div (click)="Cancelar()" class="close__button">
+    <i class="icon icon-error"></i>
+  </div>
+  <div class="modal__header">
+    <h1 class="modal__tittle">Rechazar Firma</h1>
+  </div>
+  <div>
+    <div class="modal__content">
+      <form [formGroup]="formRechazo">
+      <p class="text__message">
+        Al continuar con el rechazo de la firma, se cancelará la solicitud de
+        firma para todos los firmantes involucrados en el proceso.
+      </p>
+      <p class="text__message">Cuéntanos por qué motivo rechazas el documento.</p>
+
+      <textarea rows="5" placeholder="Comentarios" minlength="10" maxlength="500" formControlName="comentario"></textarea>
+      <div [ngClass]="{'inv':!((Comentario.invalid && Comentario.touched) || Comentario.dirty)}">
+        <small [ngClass]="{'inv': true}" class="text-error">*</small>
+        <small *ngIf="Comentario.errors?.required" class="text-error">El comentario es requerido</small>
+        <small *ngIf="Comentario.errors?.minlength || Comentario.errors?.maxlength" class="text-error">
+          Mínimo 10 caracteres y máximo de 500 caracteres
+        </small>
+    </div>
+    </form>
+    </div>
+    <div class="actions__container">
+      <button class="grey-btn" (click)="Cancelar()">Cancelar</button>
+      <button class="continue-btn-2 update__button" (click)="Confirmar()">Rechazar</button>
+    </div>
+  </div>
+</div>

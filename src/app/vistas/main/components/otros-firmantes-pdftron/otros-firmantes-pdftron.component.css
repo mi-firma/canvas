@@ -1,0 +1,409 @@
+.no-scroll {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  .top__icon {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+    justify-content: space-between;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(112,112,112,0.5);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(112,112,112,0.5);
+    box-shadow: 0px 0px 10px 0px rgba(112,112,112,0.5);
+  }
+
+  .top__logo {
+    display: block;
+    width: 145px;
+    margin: 0 20px;
+  }
+
+  .bar-mult-docs {
+    margin: 10px 10%;
+    height: 20px;
+  }
+
+  .text-mult-docs {
+    font-size: 14px;
+  }
+
+  .left-arrow {
+    transform: rotate(90deg) scale(1.5);
+    cursor: pointer;
+    margin: 0 5px;
+
+  }
+
+  .right-arrow {
+    transform: rotate(-90deg) scale(1.5);
+    cursor: pointer;
+    margin: 0 5px;
+  }
+
+  .user__modal {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: calc(100% - 66px);
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .modal__content {
+    position: absolute;
+    top: -65px;
+    width: 100%;
+    padding-top: 30px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px 0px rgba(112,112,112,0.5)
+  }
+
+  .modal__inner__content {
+    padding: 0 40px;
+  }
+
+  .modal__header {
+    font-weight: 700;
+    color: #4D0952;
+    font-size: 17px;
+    line-height: 1.3;
+    margin-bottom: 20px;
+  }
+
+    .modal__header span {
+      display: block;
+      font-weight: 400;
+    }
+
+  .modal__footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    width: 100%;
+    background: #fafafa;
+    box-shadow: 0px -5px 10px -10px rgba(0,0,0,.75);
+  }
+
+  .modal__action {
+    width: auto;
+    height: 32px;
+    text-align: center;
+    border: 1px solid #9e267d;
+    color: #fff;
+    border-radius: 5px;
+    background: #9e267d;
+    padding: 5px 20px;
+    font-size: 12px;
+  }
+
+  .top__toolbar {
+    background-color: #e5f5ff;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  .toolbar__text {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+    .toolbar__text span {
+      font-weight: 600;
+    }
+
+  .toolbar__action {
+    border: none;
+    background-color: transparent;
+    margin: 0 5px;
+  }
+
+    .toolbar__action .icon {
+      font-size: 20px;
+    }
+
+    .toolbar__action:first-child .icon {
+      font-size: 25px;
+      color: #707070;
+      border-bottom: 2px solid #707070;
+    }
+
+  .signer__firms {
+    height: fit-content;
+    width: 150px;
+    position: fixed;
+    z-index: 40;
+    top: 110px;
+    right: 80px;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #000000;
+    padding: 10px;
+    text-align: center;
+    -webkit-box-shadow: 2px 3px 4px 2px rgba(0,0,0,0.21);
+    -moz-box-shadow: 2px 3px 4px 2px rgba(0,0,0,0.21);
+    box-shadow: 2px 3px 4px 2px rgba(0,0,0,0.21);
+  }
+
+  .signer__firms__hidden {
+    display: none;
+  }
+
+  .pdf__content {
+    height: calc(100vh - 180px);
+    height: -webkit-calc(100vh - 180px);
+    height: -moz-calc(100vh - 180px);
+    margin: 10px 10%;
+    border: 1px solid #ddd;
+  }
+
+  .pdf__inner__content {
+    border-bottom: 1px solid #ddd;
+    height: inherit;
+    position: relative;
+  }
+
+  .pdf__inner__content div {
+    height: 100%;
+  }
+
+  .signed__document {
+    padding: 5% 10%;
+    position: relative;
+    background-color: #fff;
+    text-align: center;
+  }
+
+  .doc__firmado {
+    background-color: #f4f4f4;
+    padding: 5% 15%;
+  }
+
+  .doc__rechazado {
+    padding: 5% 15%;
+  }
+
+  .otp__header {
+    margin-bottom: 30px;
+  }
+
+    .otp__header .icon {
+      color: #50CC34;
+      font-size: 65px;
+    }
+
+  .success__title {
+    font-size: 24px;
+    color: #4D0952;
+    font-weight: 700;
+    margin-top: 25px;
+    text-align: center;
+  }
+
+  .opt__info {
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  .opt__text {
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+
+  .opt__text a {
+    color: #0182C4;
+    font-weight: 500;
+    text-decoration: underline !important;
+  }
+
+  .opt__button {
+    margin: 10px auto;
+    display: inline-block;
+    background-color: #9E267C;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+    width: 230px;
+    text-align: center;
+    padding: 12px 0;
+    border: none;
+  }
+
+  .sign__button {
+    max-width: unset;
+  }
+
+  .container__actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px;
+  }
+
+  .modal__action--outline {
+    width: auto;
+    height: 32px;
+    text-align: center;
+    border: 1px solid #706F70;
+    color: #707070;
+    border-radius: 5px;
+    background: #fff;
+    padding: 5px 20px;
+    font-size: 12px;
+  }
+
+  .button__dropdown {
+    position: relative;
+  }
+
+  .options__dropdown {
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    left: 0;
+    transform: translate3d(0px, 38px, 0px);
+    padding: 0;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+    font-size: 12px;
+    -webkit-box-shadow: 0px 1px 9px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 1px 9px 0px rgba(0,0,0,0.3);
+    box-shadow: 0px 1px 9px 0px rgba(0,0,0,0.3);
+  }
+
+  .options__dropdown p {
+    display: block;
+    width: 100%;
+    padding: .9rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  .options__dropdown div:hover {
+    background: #00000026;
+    color: #000000;
+  }
+
+  @media (max-width: 640px) {
+    .top__logo {
+      margin: 0 auto;
+    }
+
+    .modal__content {
+      padding: 35px 25px 50px;
+    }
+
+    .modal__inner__content {
+      padding: 0;
+    }
+
+    .modal__header {
+      font-size: 16px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+      .modal__header span {
+        margin-top: 5px;
+      }
+
+    .modal__footer {
+      padding-bottom: 0;
+      padding-top: 0;
+      flex-direction: column;
+      box-shadow: none;
+      background: #fff;
+    }
+
+      .modal__footer img {
+        display: none;
+      }
+
+    .top__toolbar {
+      padding: 10px 20px;
+      flex-direction: column;
+    }
+
+    .toolbar__text {
+      line-height: 1.3;
+      font-size: 14px;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+
+    .signer__firms {
+      top: 185px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .pdf__content {
+      height: calc(100vh - 245px);
+      margin: 10px;
+    }
+
+    .signed__document {
+      padding: 10% 25px;
+    }
+
+    .doc__firmado {
+      padding: 15% 15px;
+    }
+
+    .doc__rechazado {
+      padding: 15% 15px;
+    }
+
+    .otp__header {
+      margin-bottom: 20px;
+    }
+
+      .otp__header .icon {
+        font-size: 60px;
+      }
+
+    .success__title {
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    .opt__info {
+      padding: 10px 0;
+    }
+
+    .opt__text {
+      font-size: 14px;
+      line-height: 1.3;
+      margin-bottom: 15px;
+    }
+
+    .opt__text a {
+      color: #0182C4;
+      font-weight: 500;
+      text-decoration: underline !important;
+    }
+
+    .opt__button {
+      font-size: 15px;
+      padding: 10px 0;
+      width: 200px;
+    }
+
+    .sign__button {
+      max-width: 120px;
+    }
+  }

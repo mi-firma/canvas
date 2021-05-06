@@ -1,0 +1,27 @@
+.close__button {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.text_modal_firma {
+    color: #3f3f3f;
+    padding: 20px;
+}
+
+.otp-input {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    font-size: 20px;
+    letter-spacing: 15px;
+}
+
+.resend-otp{
+    text-align: center;
+}
+
+.otp-input:focus {
+    outline: none;
+}

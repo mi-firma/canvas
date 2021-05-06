@@ -1,0 +1,156 @@
+.add-signers {
+    padding: 0% 15% 10%;
+}
+
+.signers {
+    padding: 40px 0 20px;
+    margin-bottom: 20px;
+}
+
+.signers-header {
+    position: relative;
+    border-bottom: 1px solid #d6d5d5;
+}
+
+.signers__title {
+    text-align: center;
+    color: #373737;
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+.header__options,
+.signers__options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.option {
+    padding: 15px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    min-width: 240px;
+    background-color: transparent;
+    margin: 0 10px;
+}
+
+.option:disabled {
+    cursor: not-allowed;
+}
+
+    .option.selected {
+        background-color: #F4E6F0;
+    }
+
+    .option .icon {
+        color: #9e267d;
+        font-size: 25px;
+        margin-right: 10px;
+    }
+
+.option__detail {
+    color: #373737;
+    font-size: 14px;
+    text-align: left;
+}
+
+    .option__detail span {
+        display: block;
+        font-size: 12px;
+        font-weight: 300;
+    }
+
+.signers__options .option {
+    padding: 15px 30px;
+    justify-content: flex-start;
+    border: 1px solid #C8C8C8;
+}
+
+    .signers__options .option .option__detail,
+    .signers__options .option .icon {
+        color: #C8C8C8;
+    }
+
+    .signers__options .option.selected {
+        background-color: #DDF9F4;
+        border: 1px solid transparent;
+    }
+
+        .signers__options .option.selected .option__detail {
+            color: #3F3F3F;
+        }
+
+        .signers__options .option.selected .icon {
+            color: #3F9F82;
+        }
+
+.signers__action {
+    position: relative;
+    text-align: right;
+}
+
+.form__button {
+    border: 1px solid #9e267d;
+    color: #fff;
+    border-radius: 5px;
+    background-color: #9e267d;
+    padding: 10px 20px;
+    font-size: 12px;
+    text-align: center;
+    font-weight: normal;
+    float: right;
+}
+
+@media (max-width: 640px) {
+    .add-signers {
+        padding: 10% 25px;
+    }
+
+    .signers__title {
+        font-size: 15px;
+    }
+
+    .option {
+        min-width: auto;
+        margin: 0 5px;
+        padding: 15px;
+        flex-direction: column;
+    }
+
+        .option .icon {
+            margin: 0 0 10px;
+        }
+
+    .option__detail {
+        font-size: 13px;
+        text-align: center;
+    }
+
+        .option__detail span {
+            margin-top: 5px;
+            font-size: 11px;
+        }
+
+    .signers__options .option {
+        width: calc((100% / 3) - 10px);
+        padding: 15px 0;
+    }
+
+    .form__button {
+        font-size: 13px;
+        padding: 10px 25px;
+        float: left;
+    }
+
+    .signers-header {
+        padding: 0;
+    }
+
+    .signers {
+        margin-bottom: 10px;
+    }
+}

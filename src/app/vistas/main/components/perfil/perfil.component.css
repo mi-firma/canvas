@@ -1,0 +1,131 @@
+.profile__section {
+  padding: 0 15% 10%;
+}
+
+.profile__header {
+  position: relative;
+  border-bottom: 1px solid #d6d5d5;
+}
+
+.profile__title {
+  text-align: center;
+  color: #373737;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.user__info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0;
+}
+
+.user__image {
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+}
+
+  .user__image .icon {
+    font-size: 160px;
+    border-radius: 50%;
+    border: 3px solid #39acf9;
+    margin-bottom: 10px;
+    color: #dedede;
+    display: inline-block;
+  }
+
+.user__action {
+  background: #FFFFFF;
+  border: 1px solid #707070;
+  border-radius: 5px;
+  text-align: center;
+  padding: 8px 15px;
+  font-weight: 300;
+}
+
+.user__form {
+  position: relative;
+  padding: 0 5%;
+}
+
+.form__row {
+  display: flex;
+  margin: 10px 0;
+}
+
+.country-number {
+  width: 25%;
+}
+
+.form__column {
+  display: flex;
+  margin-right: 10px;
+}
+
+.form__input {
+  margin-right: 10px;
+}
+
+  .form__input:last-child {
+    margin-right: 0;
+  }
+
+.text-info-user {
+  text-align: left;
+  color: #3F3F3F;
+  font-weight: 600;
+}
+
+.text-info-user-soft {
+  text-align: left;
+  letter-spacing: 0px;
+  color: #3F3F3F;
+}
+
+@media (max-width: 640px) {
+  .profile__section {
+    padding: 10% 25px;
+  }
+
+  .profile__title {
+    font-size: 18px;
+  }
+
+  .user__info {
+    margin: 30px 0;
+    flex-direction: column;
+  }
+
+  .user__image {
+    margin: 0 0 20px;
+  }
+
+  .text-info-user,
+  .text-info-user-soft {
+    text-align: center;
+  }
+
+  .user__form {
+    padding: 0;
+    margin-bottom: 15%;
+  }
+
+  .form__column {
+    margin: 0;
+  }
+
+  .form__row {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .form__input {
+    margin: 0 0 10px;
+  }
+
+  .country-number {
+    margin: 0 10px 10px 0;
+  }
+}

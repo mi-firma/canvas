@@ -1,0 +1,53 @@
+<div class="tool-bar">
+    <div class="input-icons"> 
+        <input class="input-field" type="text" placeholder="Buscar" [(ngModel)]="wordSearch" (keydown.enter)="searchTemplates()"> 
+        <div *ngIf="wordSearch != ''" class="cancel_search" title="Cancelar Busqueda" (click)="searchAllTemplates()">
+            <i class="icon-error"></i>
+        </div>
+        <img src="../../../../../assets/img/lupa.svg" alt="" (click)="searchTemplates()">
+    </div> 
+    <!-- <div class="icon-item">
+        <img src="../../../../../assets/img/icon-tags.svg" alt="">
+    </div>
+    <div class="icon-item">
+        <img src="../../../../../assets/img/icon-folder.svg" alt="">
+    </div> -->
+    <div class="icon-item">
+        <a [routerLink]="'/main/menu'" class="home__button">
+            <i class='icon-home'></i>
+        </a>
+    </div>
+</div>
+
+<div class="templates__history">
+    <div class="templates__top--nav">
+        <h2 class="templates__title"> Crea y administra tus plantillas </h2>
+    </div>
+
+    <div class="horz-line"></div>
+
+    <div class="templates-box">
+
+        <div class="create-template" (click)="crearPlantilla()">
+            <img class="create-template-img" src="../../../../../assets/img/icon-add-template.svg" alt="">
+            <p class="create-template-txt">Crear plantilla</p>
+        </div>
+
+        <div class="template-item" *ngFor="let item of templates; let i=index">
+            <button class="button_menu" id="{{i}}" (click)="menuOption(i,$event)">
+                <span id="{{i}}" class="icon icon-more icon__more__small">
+                </span>
+            </button>
+            <div (click)="menuOption(i,$event)" *ngIf="item.menuOpen" class="menu__desplegable">
+                <div class="menu-item" (click)="useTemplate(i)">Usar</div>
+                <div class="menu-item" (click)="viewTemplate(i)">Ver</div>
+                <div class="menu-item" (click)="editTemplate(i)">Editar</div>
+                <div class="menu-item" (click)="deleteTemplate(i)">Eliminar</div>
+            </div>
+            <img class="template-item-img" src="../../../../../assets/img/icon-template.svg" alt="">
+            <p class="create-template-txt" title="{{item.name}}">{{ item.name | slice:0:15 }}</p>
+            <p *ngIf="item.name.length > 15" class="create-template-txt">...</p>
+        </div>
+
+    </div>
+</div>

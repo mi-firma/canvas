@@ -1,0 +1,83 @@
+<section class="firmador__login">
+    <div class="log-bar"></div>
+
+    <div class="login__wrapper disp-flex">
+
+        <div class="register__left">
+            <div class="register__cont-mov">
+                <lottie-animation-view
+                    [options]="animObjmov">
+                </lottie-animation-view>
+              </div>
+            <div class="register__cont">
+                <lottie-animation-view
+                    [options]="animObj">
+                </lottie-animation-view> 
+            </div>
+        </div>
+
+        <div class="log-der">
+            <div class="log-usu">
+
+                <div class="app__logo">
+                    <img 
+                        class="image__logo" 
+                        src="../../../../assets/img/logo-mi-firma.svg" 
+                        alt="Logo MiFirma"
+                        width="177"
+                        height="55">
+                </div>
+
+                <div>
+                    <p class="f-bs f-m-s mt-30">Ingresa tu correo electrónico para acceder a la plataforma.</p>
+                </div>
+
+                <form class="user__login"
+                      [formGroup]="formPersona">
+                    <div class="form__floating mt-50">
+                        <input class="form__input"
+                                maxlength="50"
+                                autocomplete="email"
+                                name="email"
+                                type="email"
+                                id="correo"
+                                placeholder="Correo electrónico"
+                                formControlName="correo">
+                        <label for="correo">Correo electrónico</label>
+                    </div>
+                    <div [ngClass]="{'inv':!((Email.invalid && Email.touched) || Email.dirty)}">
+                        <small [ngClass]="{'inv':true}" class="text-error">*</small>
+                        <small *ngIf="(Email.errors?.required)" class="text-error">El email es requerido</small>
+                        <small *ngIf="(Email.errors?.email)" class="text-error">El email es inválido</small>
+                    </div>
+
+                    <div *ngIf="prodEnvironment" class="algn-m_b">
+                        <button (click)="captchaRef.execute()"
+                                class="form__button continue-btn-2 mt-30"
+                                id="btnContinuar"
+                                name="btnContinuar">
+                            Continuar
+                        </button>
+                    </div>
+                    <div *ngIf="!prodEnvironment" class="algn-m_b">
+                        <button (click)="continue()"
+                                class="form__button continue-btn-2 mt-30 mb-60"
+                                id="btnContinuar"
+                                name="btnContinuar">
+                            Continuar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- CAPTCHA -->
+    <div class="captcha__container">
+        <re-captcha #captchaRef="reCaptcha"
+                    siteKey="6LdP2qkZAAAAAMD-PAhkK4yNZv7EHTeyqt_mYPIm"
+                    size="invisible"
+                    data-badge="inline"
+                    (resolved)="$event && continue()">
+        </re-captcha>
+    </div>
+</section>

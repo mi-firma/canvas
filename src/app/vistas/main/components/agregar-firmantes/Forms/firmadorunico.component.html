@@ -1,0 +1,28 @@
+<div class="disable__form">
+
+  <form #formulario ngNativeValidate>
+
+    <table class="table-firmantes">
+
+      <colgroup>
+        <col span="1" style="width: 40%;">
+        <col span="1" style="width: 40%;">
+        <col span="1" style="width: 20%;">
+      </colgroup>
+
+      <tr *ngFor="let firmante of firmantes; let i = index">
+        <td>
+          <input required [(ngModel)]="firmante.nombre" type="text" placeholder="Nombre" name={{firmante.nombre}} id={{firmante.nombre}} [ngModelOptions]="{standalone: true}">
+        </td>
+        <td>
+          <input required [(ngModel)]="firmante.correo" type="email" placeholder="Correo electrónico" name={{firmante.correo}} id={{firmante.correo}} [ngModelOptions]="{standalone: true}">
+        </td>
+        <td>
+          <div style="cursor: pointer;" (click)="eliminarCopia(i)"><i class="icon-bin"></i></div>
+        </td>
+      </tr>
+    </table>
+  </form>
+
+  <button class="add-copy-btn" (click)="agregarCopia()" name="BtnAddCopy" id="BtnAddCopy">Agregar Copia</button>
+</div>

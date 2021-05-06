@@ -1,0 +1,32 @@
+<div (click)="close()" class="close__button">
+    <i class="icon icon-error"></i>
+</div>
+<div class="share_section">
+    <h2 class="share_title">Compartir</h2>
+    <div class="d-flex">
+        <i class="icon icon-mail"></i>
+        <h3 class="share_subtitle">Compartir por correo electrónico</h3>
+    </div>
+    <div class="emails-box mt-10">
+        <mat-form-field class="email-list">
+            <mat-label>Correos</mat-label>
+            <mat-chip-list #chipList aria-label="Correos">
+              <mat-chip *ngFor="let email of emails" [selectable]="selectable"
+                       [removable]="removable" (removed)="remove(email)">
+                {{email}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="Añadir correo"
+                     [matChipInputFor]="chipList"
+                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                     [matChipInputAddOnBlur]="addOnBlur"
+                     (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+            <mat-error>Ingrese un correo valido</mat-error>
+            <mat-hint>Separar correos por coma o con enter.</mat-hint>
+        </mat-form-field>
+        <div class="center-button">
+            <button (click)="enviar()" class="continue-btn-3 share-btn">Enviar</button>
+        </div>
+    </div>
+</div>

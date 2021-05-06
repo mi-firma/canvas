@@ -1,0 +1,66 @@
+<ngx-slick-carousel (afterChange)="afterChange($event)" [config]="config">
+    <ng-container *ngFor="let plan of plans; let i = index;">
+      <div ngxSlickItem class="plan-cont">
+        <div class="plan__free">
+          <div class="title_plan-free">
+            {{ plan.name }}
+          </div>
+          <div class="plan__info-free">
+            <div class="plan__switch inner">
+              <ng-container *ngIf="plan.subscriptionsDto.length >= 2">
+                <p>{{ plan.subscriptionsDto[0].intervalCode | titlecase | timeUnit }}</p>
+                <label class="switch">
+                  <input type="checkbox" [checked]="plan.subscriptionsSelected > 0" (change)="planSubsChanged(plan)">
+                  <span class="slider round"></span>
+                </label>
+                <p>{{ plan.subscriptionsDto[1].intervalCode | titlecase | timeUnit }}</p>
+              </ng-container>
+            </div>
+            <ngx-slick-carousel>
+              <ng-container *ngFor="let service of plan.servicesDto">
+                <div ngxSlickItem class="service-cont">
+                  <p>{{ service.serviceType.unit.name }}</p>
+                  <ng-container *ngIf="service.serviceType.isUnlimited">
+                    <h5 class="plan-cant_firmas">ILIMITADAS</h5>
+                  </ng-container>
+                  <ng-container *ngIf="!service.serviceType.isUnlimited">
+                    <h5 class="plan-cant_firmas">{{ service.serviceType.numberOf }}</h5>
+                  </ng-container>
+                  <p class="plan-tipo_firma">{{ service.name }}</p>
+                </div>
+              </ng-container>
+            </ngx-slick-carousel>
+            <div class="plan-price">
+              <ng-container *ngIf="plan.subscriptionsSelected && plan.subscriptionsDto[plan.subscriptionsSelected]">
+                <ng-container *ngIf="plan.subscriptionsDto[plan.subscriptionsSelected].discount > 0">
+                  <p>Precio especial</p>
+                  <p class="value">${{ plan.subscriptionsDto[plan.subscriptionsSelected].discount + plan.subscriptionsDto[plan.subscriptionsSelected].tax | number }}
+                    <span>/{{ plan.subscriptionsDto[plan.subscriptionsSelected].intervalCode | titlecase | timeUnit }}</span>
+                  </p>
+                </ng-container>
+                <p *ngIf="plan.subscriptionsDto[plan.subscriptionsSelected].price > 0"
+                  [ngClass]="{'value': plan.subscriptionsDto[plan.subscriptionsSelected].discount <= 0, 
+                              'value-old': plan.subscriptionsDto[plan.subscriptionsSelected].discount > 0}"
+                              >${{ plan.subscriptionsDto[plan.subscriptionsSelected].price + plan.subscriptionsDto[plan.subscriptionsSelected].tax | number }}
+                  <span>/{{ plan.subscriptionsDto[plan.subscriptionsSelected].intervalCode | titlecase | timeUnit }}</span>
+                </p>
+              </ng-container>
+            </div>
+            <button *ngIf="false"
+                    class="plan-action"
+                    disabled>
+              Tu plan actual
+            </button>
+            <button *ngIf="true" class="plan-action" (click)="planSelectedInternal(plan)">
+              ¡Lo Quiero!
+            </button>
+          </div>
+          <div class="plan-features">
+            <div class="left-triangle"></div>
+            <div class="right-triangle"></div>
+            <p>Ver Características</p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+</ngx-slick-carousel>

@@ -1,0 +1,51 @@
+<div class="update__signer">
+    <div>
+        <div class="header__container">
+            <div>
+                <p class="header__tittle">Personaliza tu firma manuscrita</p>
+            </div>
+            <div class="algn-r">
+                <button 
+                    class="sign__button"
+                    [routerLink]="'/main/documentos'">
+                        Ir a Firmar
+                </button>
+                <a [routerLink]="'/main/menu'" class="home__button">
+                    <i class='icon-home'></i>
+                </a>
+            </div>
+        </div>
+        <div class="horz-line mt-30"></div>
+        <div class="algn-m mt-30 mifirma">
+            <app-customize-signature [signaturePadWidth]="getWidthSignaturePad()"
+                                     (saveEvent)="onSave($event)">
+            </app-customize-signature>
+        </div>
+        <div *ngIf="signatures.length>0">
+            <div class="horz-line mt-50"></div>
+            <div class="mifirma">
+                <p class="list__tittle"> Firmas Guardadas </p>
+                <div class="sect">
+                    <table class="table table-striped">
+                        <colgroup>
+                            <col span="1" style="width: 100%;">
+                        </colgroup>
+                        <thead>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of signatures; index as i">
+                                <td class="algn-m">
+                                    <img class="signature-thumbnail" [src]="item.archivo" alt="">
+                                </td>
+
+                                <td class="algn-v2">
+                                    <div (click)="deleteSignature(i)"><i class="icon-bin cursor-pointer"></i></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

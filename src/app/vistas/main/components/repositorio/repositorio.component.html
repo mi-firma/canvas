@@ -1,0 +1,297 @@
+<div *ngIf="!isThirdParty" class="tool-bar">
+    <div class="input-icons"> 
+        <input class="input-field" type="text" placeholder="Buscar Documentos" [(ngModel)]="wordSearch" (keydown.enter)="searchDocuments()"> 
+        <div *ngIf="wordSearch != ''" class="cancel_search" title="Cancelar Busqueda" (click)="searchAllDocuments()">
+            <i class="icon-error"></i>
+        </div>
+        <img src="../../../../../assets/img/lupa.svg" alt="" (click)="searchDocuments()">
+    </div> 
+    <!-- <div class="icon-item">
+        <img src="../../../../../assets/img/icon-tags.svg" alt="">
+    </div>
+    -->
+    <div class="icon-item" (click)="checkDownload()" title="Descargar">
+        <img src="../../../../../assets/img/icon-download3.svg" alt="">
+    </div>
+    <div class="icon-item" (click)="moveDocuments()" title="Mover">
+        <img src="../../../../../assets/img/icon-move.svg" alt="">
+    </div>
+    <div class="icon-item" (click)="modalCreateFolder()" title="Crear Carpeta">
+        <img src="../../../../../assets/img/icon-folder.svg" alt="">
+    </div> 
+    <div class="icon-item" title="Inicio">
+        <a [routerLink]="'/main/menu'" class="home__button">
+            <i class='icon-home'></i>
+        </a>
+    </div>
+</div>
+<div class="documents__history">
+    <div class="documents__top--nav">
+        <h2 *ngIf="isThirdParty" class="history__title"> Mis trámites </h2>
+        <h2 *ngIf="!isThirdParty" class="history__title"> Mi Carpeta Personal </h2>
+        <div class="pagination-box">
+            <mat-select class="my-select4 input-size" [value]="pageSize" [(ngModel)]="pageSize" placeholder="Tamaño pagina" name=paginador id=paginador [ngModelOptions]="{standalone: true}" (ngModelChange)="changeSizePage($event)">
+                <mat-option  *ngFor="let size of pageSizes; let i=index" [value]="size">
+                    {{size}}
+                </mat-option>
+            </mat-select>
+            <p *ngIf="pageLength[page-1] == pageSize" class="text-pagination">{{1+(pageSize*(page-1))}} - {{pageSize*page}}</p>
+            <p *ngIf="pageLength[page-1] != pageSize"class="text-pagination">{{1+(pageSize*(page-1))}} - {{pageSize*(page-1)+pageLength[page-1]}}</p>
+            <img *ngIf="page > 1" (click)="prevPage()" class="right-arrow" src="../../../../../../assets/img/icons/down-arrow-black.svg" alt="">
+            <img *ngIf="pageLength[page-1] == pageSize" (click)="nextPage()" class="left-arrow" src="../../../../../../assets/img/icons/down-arrow-black.svg" alt="">
+        </div>
+    </div>
+
+    <div class="documents__table">
+        <div class="table__headers">
+            <div class="tools__header">
+                <input type="checkbox" [checked]="isOneSelected()" (click)="checkDocs()">
+                <div (click)="toggleFilterSelection($event)" class="button__filter__container">
+                    <div [class.down-arrow]="!filterMenuIsShowing"
+                         [class.up-arrow]="filterMenuIsShowing"></div>
+                </div>
+                <div class="menu__desplegable filtro"
+                    *ngIf="filterMenuIsShowing">
+                    <div>
+                        <p id="tool-option" (click)="setSelectionDocs(true)">Todo</p>
+                    </div>
+                    <div>
+                        <p id="tool-option" (click)="setSelectionDocs(false)">Nada</p>
+                    </div>
+                    <div>
+                        <p id="tool-option" (click)="checkDownload()">Descargar</p>
+                    </div>
+                </div>
+            </div>
+            <div class="alt__container">
+                <div class="alt__message">
+                    <p>Seleccionar</p>
+                </div>
+            </div>
+            <span class="header__item header__item--lg">Documentos procesados</span>
+            <span class="header__item header__item--sm">Tipo Solicitud</span>
+            <span class="header__item header__item--sm">Fecha</span>
+            <span class="header__item header__item--sm">Estado</span>
+            <span class="header__item header__item--md">Acciones</span>
+        </div>
+
+        <div>
+            <div *ngFor="let folder of folders | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; let i = index"
+                 class="document">
+                <div class="info__wrapper">
+                    <div class="document__info document__info--lg">
+                        <input class="input-check" type="checkbox" [(ngModel)]="folder.selected">
+                        <img class="document__icon2" src="../../../../../assets/img/folder.svg" alt="">
+                        <div (click)="openFolder(folder.sobreIdentificador,folder.sobreNombre)" class="document__signers folder-action">
+                            <span>{{ folder.sobreNombre }}</span>
+                        </div>
+                    </div>
+
+                    <p class="document__info document__info--sm">
+                        <span> </span>
+                    </p>
+
+                    <p class="document__info document__info--sm">
+                        <span></span>{{ folder.sobreFechaCreacion | date : "dd-MM-yyyy - hh:mm:ss a" }}
+                    </p>
+
+                    <p class="document__info document__info--sm desktop">
+                        <span class="document__state"> </span>
+                    </p>
+                </div>
+
+                <div class="document__info document__info--md document__actions actions-folders">
+
+
+                    <!-- TODO => Change to routerlink and dynamic route -->
+
+                    <button class="button_menu menu-folders"
+                            id="{{pageSize * (page - 1) + i}}"
+                            (click)="menuOptionFolders(pageSize * (page - 1) + i,$event)">
+                      <span id="{{pageSize * (page - 1) + i}}"
+                            class="icon icon-more icon__more__small">
+                      </span>
+                    </button>
+
+                    <div (click)="menuOptionFolders(pageSize * (page - 1) + i,$event)"
+                         *ngIf="folder.menuOpen"
+                         class="menu__desplegable historial">
+                        <span class="icon icon-down-arrow menu__desplegable-icon__close"
+                              (click)="menuOptionFolders(pageSize * (page - 1) + 1, $event)">
+                        </span>
+                        <div (click)="openFolder(folder.sobreIdentificador,folder.sobreNombre)">
+                            <span class="icon icon-detail"></span>
+                            <p>Abrir</p>
+                        </div>
+                        <div (click)="descargarCarpeta(i)">
+                            <span class="icon icon-download-3"></span>
+                            <p>Descargar</p>
+                        </div>
+                        <div (click)="deleteFolder(folder.sobreNombre)">
+                            <span class="icon icon-bin"></span>
+                            <p>Eliminar</p>
+                        </div>
+                        <div (click)="modalUpdateFolder(folder.sobreIdentificador)">
+                            <span class="icon icon-detail"></span>
+                            <p>Cambiar Nombre</p>
+                        </div>
+                    </div>
+                    <div [class.menu__desplegable--mask]="folder.menuOpen"
+                         [class.menu__desplegable--mask__hidden]="!folder.menuOpen">
+                    </div>
+                </div>
+            </div>
+            <div *ngFor="let document of docs | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; let i = index"
+                 class="document">
+                <div class="info__wrapper">
+                    <div class="document__info document__info--lg">
+                        <input class="input-check" type="checkbox" [(ngModel)]="document.selected">
+                        <span class="document__icon">PDF</span>
+                        <div class="document__signers">
+                            <span>{{ document.fileName }}</span>
+                            <div class="signers__info" *ngIf="document.signers">
+                                <div class="subtitle">Firmantes:</div>
+                                <div class="signers">
+                                    <span *ngFor="let signer of document.signers">
+                                        {{ signer.name.split(' ')[0] }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="document__info document__info--sm">
+                        <span></span>{{ document.requestType}}
+                    </p>
+
+                    <p class="document__info document__info--sm">
+                        <span></span>{{ document.fileCreationDate | date : "dd-MM-yyyy - hh:mm:ss a" }}
+                    </p>
+
+                    <p class="document__info document__info--sm desktop">
+                        <span [class.complete]="document.signatureProcessStatusName == 'Firmas completadas'"
+                              [class.pending]="document.signatureProcessStatusName == 'Pendiente de firmas'"
+                              [class.expired]="document.signatureProcessStatusName == 'Solicitud expirada'"
+                              class="document__state">{{ document.signatureProcessStatusName }}</span>
+                    </p>
+                </div>
+
+                <div class="document__info document__info--md document__actions">
+
+                  <div  *ngIf=" document.requestType != 'Mis Solicitudes' && document.signatureProcessStatusName == 'Pendiente de firmas'  && document.signatureProcessStatusId == 4 ;else other_content"
+                        class="sign__container">
+                    <button
+                            (click)="FirmarDocumento(document.urlRequestSignatureProcess)">
+                      Firmar
+                    </button>
+                  </div>
+                  <ng-template #other_content>
+                    <!-- TODO => Change to routerlink and dynamic route -->
+                    <button class="document__action check"
+                            (click)="verPDF(document.fileSerial, document.fileName)">
+                      <span class="icon icon-eye icon__eye__info"></span>
+                    </button>
+
+                    <button class="button_menu"
+                            id="{{pageSize * (page - 1) + i}}"
+                            (click)="menuOption(pageSize * (page - 1) + i,$event)">
+                      <span id="{{pageSize * (page - 1) + i}}"
+                            class="icon icon-more icon__more__small">
+                      </span>
+                    </button>
+
+                    <div (click)="menuOption(pageSize * (page - 1) + i,$event)"
+                         *ngIf="document.menuOpen"
+                         class="menu__desplegable historial">
+                        <span class="icon icon-down-arrow menu__desplegable-icon__close"
+                              (click)="menuOption(pageSize * (page - 1) + 1, $event)">
+                        </span>
+                        <div class="view__button"
+                             (click)="verPDF(document.fileSerial, document.fileName)">
+                            <span class="icon icon-eye-2"></span>
+                            <p>Ver</p>
+                        </div>
+                        <div (click)="infoDocumento(document)">
+                            <span class="icon icon-detail"></span>
+                            <p>Detalle</p>
+                        </div>
+                        <div (click)="descargar(document.fileSerial, document.fileName)">
+                            <span class="icon icon-download-3"></span>
+                            <p>Descargar</p>
+                        </div>
+                        <div (click)="modalMoveFile(document.fileSerial)">
+                            <span class="icon icon-move2"></span>
+                            <p>Mover</p>
+                        </div>
+                        <div (click)="shareFile(document.fileSerial)" *ngIf="document.signatureProcessStatusName == 'Firmas completadas'">
+                            <span class="icon icon-send"></span>
+                            <p>Compartir</p>
+                        </div>
+                        <div (click)="expediente(document.fileSerial)">
+                            <span class="icon icon-send"></span>
+                            <p>Expediente</p>
+                        </div>
+                        <div *ngIf="document.requestType == 'Mis Solicitudes' || document.requestType == 'Mi Solicitud'" (click)="modalDeleteDocument(document.fileSerial)">
+                            <span class="icon icon-bin"></span>
+                            <p>Eliminar</p>
+                        </div>
+                    </div>
+                    <div [class.menu__desplegable--mask]="document.menuOpen"
+                         [class.menu__desplegable--mask__hidden]="!document.menuOpen">
+                    </div>
+                  </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="disp-flex">
+        <ngb-pagination class="repo-pag"
+                        [collectionSize]="docs.length"
+                        [(page)]="page"
+                        [maxSize]="detectMob ? 1 : 4"
+                        [rotate]="true"
+                        [ellipses]="false"
+                        [boundaryLinks]="true"></ngb-pagination>
+    </div> -->
+</div>
+
+<div *ngIf="isDownloading" class="modal-download">
+    <div class="modal-download-box">
+        <div class="algn-m">
+            <img src="../../../../../assets/img/icon-information.svg" alt="icon-alert">
+        </div>
+        <div class="text_modal-download">
+            <p>
+                Este proceso puede llevar varios minutos dependiendo de la cantidad
+                de documentos a descargar.
+            </p>
+        </div>
+        <div class="algn-m">
+            <button (click)="closeModal()"
+                class="form__button continue-btn-2">
+            Aceptar
+        </button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isDownloadingFolder" class="modal-download">
+    <div class="modal-download-box">
+        <div class="algn-m">
+            <img src="../../../../../assets/img/icon-information.svg" alt="icon-alert">
+        </div>
+        <div class="text_modal-download">
+            <p>
+                Este proceso puede llevar varios minutos dependiendo de la cantidad
+                de documentos que contenga la carpeta.
+            </p>
+        </div>
+        <div class="algn-m">
+            <button (click)="closeModalFolder()"
+                class="form__button continue-btn-2">
+            Aceptar
+        </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="resumen">
+  <div class="disp-flex">
+    <h5 class="tl-modal algn-m">Configura tu firma manuscrita</h5>
+    <div (click)="close()" class="algn-r cursor-pointer ">
+      <i class="icon icon-error"></i>
+    </div>
+  </div>
+  <div class="horz-line mt-20"></div>
+</div>
+
+<div class="resumen dv-table">
+  <div>
+    <app-customize-signature [signaturePadWidth]="getSignaturePadWidth()"
+                             (saveEvent)="onSave($event)">
+    </app-customize-signature>
+  </div>
+</div>

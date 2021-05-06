@@ -1,0 +1,171 @@
+<div class="firmador__register">
+    <div class="log-bar"></div>
+
+    <div class="register__wrapper disp-flex">
+
+        <div class="register__left">
+            <div class="register__cont-mov">
+                <lottie-animation-view [options]="animObjmov">
+                </lottie-animation-view>
+            </div>
+            <div class="register__cont">
+                <lottie-animation-view [options]="animObj">
+                </lottie-animation-view>
+            </div>
+        </div>
+
+        <div class="log-der">
+            <div class="log-usu">
+
+                <div class="app__logo">
+                    <img class="image__logo" src="../../../../assets/img/logo-mi-firma.svg" alt="Logo MiFirma"
+                        width="177" height="55">
+                </div>
+                <div (keydown.enter)="continuar()">
+                    <form class="register__form mt-20" [formGroup]="formRegistro">
+                        <div class="form__floating">
+                            <input maxlength="50" autocomplete="email" name="email" type="email" id="correo"
+                                placeholder="Correo electrónico" formControlName="correo">
+                            <label for="correo">Correo electrónico</label>
+                        </div>
+                        <div [ngClass]="{'inv':!((Email.invalid && Email.touched) || Email.dirty)}">
+                            <small [ngClass]="{'inv':true}" class="text-error">*</small>
+                            <small *ngIf="(Email.errors?.required)" class="text-error">El email es requerido</small>
+                            <small *ngIf="(Email.errors?.email)" class="text-error">El email es inválido</small>
+                        </div>
+
+                        <div class="disp-flex">
+                            <input class="input-cel" type="text" placeholder="+57" [disabled]=true>
+                            <div class="form__floating flex__all">
+                                <input class="input-cel2" type="tel" autocomplete="tel" name="tel" id="celular"
+                                    placeholder="Celular" formControlName="celular" minlength="10" maxlength="10"
+                                    onkeydown="return ( event.ctrlKey || event.altkey || (47 < event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95 < event.keyCode && event.keyCode<106)|| (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40)|| (event.keyCode==46))">
+                                <label for="celular">Celular</label>
+                            </div>
+                        </div>
+
+                        <div [ngClass]="{'inv':!((Celular.invalid && Celular.touched) || Celular.dirty)}">
+                            <small [ngClass]="{'inv': true}" class="text-error">*</small>
+                            <small *ngIf="Celular.errors?.required" class="text-error">El celular es requerido</small>
+                            <small *ngIf="Celular.errors?.numeric || Celular.errors?.minlength" class="text-error">El
+                                celular es inválido</small>
+                        </div>
+
+                        <div class="form__floating">
+                            <input id="nombre" type="text" name="nombre" autocomplete="nombre" placeholder="Nombre"
+                                formControlName="Nombre" maxlength="50">
+                            <label for="nombre">Nombre</label>
+                        </div>
+                        <div class="text-left-ovwrite"
+                            [ngClass]="{'inv':!((Nombre.invalid && Nombre.touched) || Nombre.dirty)}">
+                            <small [ngClass]="{'inv':!Nombre.errors?.required}" class="text-error">El nombre es
+                                requerido</small>
+                        </div>
+
+                        <div class="form__floating">
+                            <input id="apellido" type="text" name="apellido" autocomplete="apellido"
+                                placeholder="Apellido" formControlName="Apellido" maxlength="100">
+                            <label for="apellido">Apellido</label>
+                        </div>
+                        <div class="text-left-ovwrite"
+                            [ngClass]="{'inv':!((Apellido.invalid && Apellido.touched) || Apellido.dirty)}">
+                            <small [ngClass]="{'inv':!Apellido.errors?.required}" class="text-error">El apellido es
+                                requerido</small>
+                        </div>
+                        <ng-template #passtext>
+                            La contraseña debe tener lo siguiente:
+                            <br>
+                            <br> -Mínimo 8 caracteres
+                            <br> -Una letra MAYÚSCULA
+                            <br> -Una letra minúscula
+                            <br> -Un carácter especial
+                            <br> -Un número
+                            <br> -No puede contener espacios
+                        </ng-template>
+
+                        <div class="form__floating">
+                            <input
+                                [ngClass]="{'correct-pass': Contrasena.valid && Contrasena.dirty,'wrong-pass': Contrasena.invalid && Contrasena.dirty
+                                            ,'pass': !fieldTextType,'pass-view': fieldTextType}"
+                                id="contrasena" type="text" name="contrasena" placeholder="Nueva Contraseña" (keydown)="checkCharacters($event)"
+                                formControlName="Contrasena" maxlength="50" minlength="8" autocomplete="off" [ngbTooltip]="passtext" tooltipClass="text-tooltip" placement="bottom-right">
+                            <label for="contrasena">Nueva Contraseña</label>
+                            <i class="icon view-pass"
+                                [ngClass]="{'icon-view': !fieldTextType,'icon-no-view': fieldTextType}"
+                                (click)="toggleFieldTextType()"></i>
+                        </div>
+                        <div class="text-left-ovwrite"
+                            [ngClass]="{'inv':!((Contrasena.invalid && Contrasena.touched) || Contrasena.dirty)}">
+                            <small [ngClass]="{'inv': true}" class="text-error">*</small>
+                            <small *ngIf="Contrasena.errors?.required" class="text-error">La contraseña es requerida</small>
+                        </div>
+    
+                        <div class="form__floating">
+                            <input
+                                [ngClass]="{'correct-pass': Contrasena2.valid && Contrasena2.dirty && equallsPass,'wrong-pass': Contrasena2.dirty && !equallsPass
+                                            ,'pass': !fieldTextType2,'pass-view': fieldTextType2}"
+                                id="contrasena2" type="text" name="contrasena2" placeholder="Confirmar Contraseña" (keydown)="checkCharacters($event)"
+                                formControlName="Contrasena2" maxlength="50" minlength="8" autocomplete="off" onpaste="return false;">
+                            <label for="contrasena2">Confirmar Contraseña</label>
+                            <i class="icon view-pass"
+                                [ngClass]="{'icon-view': !fieldTextType2,'icon-no-view': fieldTextType2}"
+                                (click)="toggleFieldTextType2()"></i>
+                        </div>
+                        <div class="text-left-ovwrite"
+                            [ngClass]="{'inv':!((Contrasena2.invalid && Contrasena2.touched) || Contrasena2.dirty)}">
+                            <small [ngClass]="{'inv': true}" class="text-error">*</small>
+                            <small *ngIf="Contrasena2.errors?.required" class="text-error">Confirmar la contraseña es
+                                requerido</small>
+                                <br>
+                            <small *ngIf="!equallsPass && Contrasena2.touched" class="text-error">Las contraseñas son distintas</small>
+                        </div>
+
+
+                        <div *ngFor="let termino of termsArr; index as i">
+                            <div class="disp-flex mt-10">
+                                <input type="checkbox" formControlName="termino{{i}}">
+                                <a class="cursor-pointer" (click)="openTermsModal(i)">
+                                    <p class="p-term ml-10">{{termino.labelFrontEnd}}</p>
+                                </a>
+                            </div>
+                            <div
+                                [ngClass]="{'inv':!((formRegistro.get(getNameForm(i)).invalid && formRegistro.get(getNameForm(i)).touched) || formRegistro.get(getNameForm(i)).dirty)}">
+                                <small [ngClass]="{'inv':true}" class="text-error">*</small>
+                                <small *ngIf="(formRegistro.get(getNameForm(i)).errors?.required)"
+                                    class="text-error">Tienes que aceptar para continuar</small>
+                            </div>
+                        </div>
+
+                        <!-- <div class="disp-flex mt-10">
+                            <input type="checkbox"
+                                formControlName="terminos">
+                            <a class="cursor-pointer" (click)="openTermsModal()"><p class="p-term ml-10">Acepto los términos y condiciones</p></a>
+                        </div>
+                        <div [ngClass]="{'inv':!((Terminos.invalid && Terminos.touched) || Terminos.dirty)}">
+                            <small [ngClass]="{'inv':true}" class="text-error">*</small>
+                            <small *ngIf="(Terminos.errors?.required)" class="text-error">Acepta los términos y condiciones</small>
+                        </div>
+                        <div class="disp-flex mt-10">
+                            <input type="checkbox"
+                                formControlName="atdp">
+                            <a class="cursor-pointer" (click)="openDataPoliciesModal()"><p class="p-term ml-10">Autorizo el tratamiento de mis datos personales</p></a>
+                        </div>
+                        <div [ngClass]="{'inv':!((ATDP.invalid && ATDP.touched) || ATDP.dirty)}">
+                            <small [ngClass]="{'inv':true}" class="text-error">*</small>
+                            <small *ngIf="(ATDP.errors?.required)" class="text-error">Autoriza el tratamiento de tus datos</small>
+                        </div> -->
+                    </form>
+                </div>
+
+                <p class="fs-m">
+                    ¿Ya tienes una cuenta? <span class="click-text cursor-pointer fs-m" (click)="login()">Iniciar
+                        sesión</span>
+                </p>
+
+                <button (click)="continuar()" class="form__button continue-btn-2 mt-30">
+                    Crear Cuenta
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

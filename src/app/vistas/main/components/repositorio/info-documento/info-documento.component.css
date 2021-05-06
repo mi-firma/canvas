@@ -1,0 +1,331 @@
+.complete {
+    color: #1ACC36;
+}
+
+.pending {
+    color: #0182C4;
+}
+
+.document__action {
+    padding: 8px 15px;
+    border-radius: 5px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    margin: 0 5px;
+    font-size: 13px;
+}
+
+.document__action.check {
+    background-color: #1ACC36;
+}
+
+.document__action.back {
+    color: #707070;
+    background-color: #fff;
+    border: 1px solid #707070;
+}
+
+.document__detail {
+    padding: 0 10%
+}
+
+.document__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.document__title {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 500;
+}
+
+.document__name {
+    font-style: italic;
+    font-weight: 300;
+}
+
+.header__actions {
+    display: flex;
+}
+
+.document__details {
+    margin: 50px 0;
+}
+
+.document__signer {
+    padding: 20px 0;
+    display: flex;
+    border-bottom: 1px solid #d6d6d6;
+}
+
+.detail__headers, .document__signer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 15px 0;
+    border-bottom: 1px solid #d6d6d6;
+}
+
+.info__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.header {
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.signer__info {
+    width: 30%;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.signer__info span {
+    display: block;
+}
+
+.signer__info--xs, .header--xs {
+    width: 5%;
+}
+
+.signer__info-s, .header-s {
+    width: 25%;
+}
+
+.signer__info--sm, .header--sm {
+    width: 20%;
+}
+
+.signer__info--lg, .header--lg {
+    width: 40%;
+    text-align: left;
+}
+
+signer__info--menu {
+    width: 5%;
+}
+
+.document__info {
+    padding: 0;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.button_menu {
+    border: none;
+    cursor: pointer;
+    background-color: #fff;
+    margin-left: 10px;
+}
+
+.icon__more__small {
+    font-size: 5px !important;
+}
+
+.signer__actions {
+    padding: 0;
+    position: relative;
+}
+
+.menu__desplegable-firmantes {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 30px;
+    right: 0;
+    padding: 0;
+    z-index: 50;
+    width: max-content;
+    height: auto;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 12px;
+    -webkit-box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.3);
+}
+
+.menu__desplegable-firmantes div {
+    width: 100%;
+}
+
+.menu__desplegable-firmantes div:hover {
+    background: #00000026;
+    color: #000000;
+}
+
+.menu__desplegable-firmantes div span {
+    display: none;
+}
+
+.menu__desplegable-firmantes p {
+    cursor: pointer;
+    text-align: left;
+    display: inline-block;
+    width: 100%;
+    padding: 15px 25px;
+}
+
+.menu__desplegable--mask__hidden, .menu__desplegable--mask {
+    display: none;
+}
+
+.menu__desplegable-icon__close {
+    display: none;
+}
+
+.modal-download {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+
+.text_modal-download {
+    text-align: center;
+    padding: 5% 0%;
+    font-size: 16px;
+}
+
+.text_modal-download span {
+    font-weight: 700;
+}
+
+.modal-download-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 3%;
+    -webkit-box-shadow: 0px 0px 16px #00000041;
+    -moz-box-shadow: 0px 0px 16px #00000041;
+    box-shadow: 0px 0px 16px #00000041;
+    border-radius: 2%;
+    width: 35%;
+    border: 1px solid #D5D5D5;
+}
+
+@supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+    .modal-download {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+}
+
+@media (max-width: 640px) {
+    .document__detail {
+        padding: 10% 25px;
+    }
+    .document__header {
+        justify-content: center;
+        flex-direction: column;
+    }
+    .document__title {
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+    .document__title span {
+        font-size: 14px;
+    }
+    .header-s, .header--xs, .signer__info-s, .signer__info--xs {
+        display: none;
+    }
+    .signer__info--lg, .header--lg {
+        width: 60%;
+    }
+    .signer__info--sm, .header--sm {
+        width: 25%;
+    }
+    .signer__info {
+        font-size: 12px;
+    }
+    .signer__info span {
+        font-size: 10px;
+        margin: 5px 0;
+    }
+    .signer__info--lg {
+        word-break: break-all;
+        padding-right: 5px;
+    }
+    .signer__actions {
+        position: static;
+    }
+    .menu__desplegable-firmantes {
+        flex-direction: row;
+        align-items: center;
+        height: 100px;
+        font-size: 10px;
+        top: unset;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        padding-top: 20px;
+        border-radius: 5px 5px 0 0;
+    }
+    .menu__desplegable-firmantes p {
+        padding: 10px 0;
+        text-align: center;
+        word-spacing: 9999px;
+    }
+    .menu__desplegable-firmantes div span {
+        display: initial;
+        font-size: 20px;
+        color: #707070;
+    }
+    .menu__desplegable--mask__hidden {
+        display: initial;
+        position: fixed;
+        width: 100%;
+        bottom: -100%;
+        left: 0;
+        border-radius: 0;
+        height: calc(100% - 166px);
+        background: rgba(0, 0, 0, .3);
+        z-index: 1;
+        visibility: hidden;
+        transition: all .3s ease-in-out;
+    }
+    .menu__desplegable--mask {
+        display: initial;
+        visibility: visible;
+        position: fixed;
+        width: 100%;
+        bottom: 100px;
+        left: 0;
+        border-radius: 0;
+        height: calc(100% - 166px);
+        background: rgba(0, 0, 0, .3);
+        z-index: 1;
+        transition: all .3s ease-in-out;
+    }
+    .menu__desplegable-icon__close {
+        display: initial;
+        position: absolute;
+        color: #000000;
+        top: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .modal-download-box{
+        width: 95%;
+    }
+}

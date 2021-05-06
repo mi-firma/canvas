@@ -1,0 +1,145 @@
+<div class="file__content fir-content">
+  <button class="signer__mobile__button" (click)="toggleSignerMenu()">
+    <span class="icon icon-more"></span> Seleccionar firmantes
+  </button>
+
+  <div id="tools-menu" [class.opened]="showMobileMenu" class="signer__menu">
+    <div class="selected__signers">
+      <div class="signers__header d-flex">
+        <h4 class="header__subtitle--pdftron">Elige un firmante:</h4>
+        <div class="display-message">
+          <img src="../../../../../assets/img/information-button.svg" alt="">
+        </div>
+        <div class="alt__container">
+          <div class="alt__message">
+            <p>Selecciona el nombre de la persona</p>
+            <p>que va a firmar el documento.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="signer__options">
+        <mat-select [value]="0" class="my-select2 input-template"
+          placeholder="Elige un firmante">
+          <ng-container *ngFor="let signer of signers; let i = index">
+            <mat-option [value]="i" (click)="chooseSigner(i)">
+              {{signer.nombre}}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </div>
+
+      <div class="signers__header d-flex">
+        <h4 class="header__subtitle--pdftron">Campos básicos:</h4>
+        <div class="display-message">
+          <img src="../../../../../assets/img/information-button.svg" alt="">
+        </div>
+        <div class="alt__container">
+          <div class="alt__message">
+            <p>Selecciona el campo que deseas</p>
+            <p>agregar al documento.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="signer__options">
+
+        <button [ngStyle]="{ 'background-color': color }" class="signer__item" (click)="createAnnot(annotationType.SIGNATURE)">
+          <i class="icon icon-field-firma"></i>
+          <span class="tool__name">Firma</span>
+        </button>
+
+        <button [ngStyle]="{ 'background-color': color }" class="signer__item" (click)="createAnnot(annotationType.INITIALS)">
+          <i class="icon icon-field-iniciales"></i>
+          <span class="tool__name">Iniciales</span>
+        </button>
+
+        <button [ngStyle]="{ 'background-color': color }" class="signer__item" (click)="createAnnot(annotationType.DATE)">
+          <i class="icon icon-field-fecha"></i>
+          <span class="tool__name">Fecha</span>
+        </button>
+
+        <button [ngStyle]="{ 'background-color': color }" class="signer__item" (click)="createAnnot(annotationType.TEXT)">
+          <i class="icon icon-field-texto"></i>
+          <span class="tool__name">Texto</span>
+        </button>
+      </div>
+    </div>
+
+    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" class="acordion-docs">
+      <ngb-panel *ngFor="let file of files; let i=index">
+        <ng-template ngbPanelTitle>
+          <div class="doc-name">
+            {{file.name}}
+          </div>
+          <div class="image-arrow">
+            <img src="../../../../../assets/img/icons/down-arrow-black.svg" alt="">
+          </div>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <div class="file__preview">
+            <div class="file__thumbnail th-fix cursor-pointer" (click)="shiftDocs(i)">
+              <pdf-viewer [src]="file.document"
+                          [original-size]="false"
+                          [show-all]="false">
+              </pdf-viewer>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+
+    <!-- <div class="container__file--preview" *ngFor="let file of files; let i = index">
+      <div class="file__name--collapse" (click)="shiftDocs(i)">
+        <p class="file__text--collapse" >{{file.name}}</p>
+        <span class="icon-down-arrow" *ngIf="(file.length - i) !== files.length"></span>
+        <span *ngIf="(file.length - i) === files.length" class="icon-down-arrow icon__rotate--arrow"></span>
+      </div>
+      <div class="file__preview">
+        <div class="file__thumbnail th-fix">
+          <pdf-viewer [src]="file.document" [original-size]="false" [show-all]="false">
+          </pdf-viewer>
+        </div>
+      </div>
+    </div> -->
+
+
+  </div>
+  <div class="file__wrapper box-2">
+    <app-signatures-list
+      [ngClass]="{'signatures__list': isSignaturesMenuShowing, 'signatures__list__hidden': !isSignaturesMenuShowing}"
+      [maximumSignatures]="3" (signatureUriChanged)="onSignatureUriChange($event)"
+      (signatureGuidChanged)="onSignatureGuidChange($event)"></app-signatures-list>
+    <div class="header-menu">
+      <div>
+        <p class="file__name algn-l" *ngIf="this.files.length > 0">{{ this.files[currentDocumentIndex].name }}</p>
+      </div>
+      <div class="sign--options">
+        <ng-container *ngIf="this.firmante && this.firmante.tipo === 'Yo'">
+          <i class='icon-sign icon-sign-blue cursor-pointer'
+            (click)="toggleSignaturesList()">
+          </i>
+        </ng-container>
+        <button *ngIf="!otros && (!isThirdParty || !thirdPartyColor)" (click)="continuar()" class="continue-btn-3 ml-10 algn-r-v3">
+          Firmar
+        </button>
+        <button *ngIf="!otros && isThirdParty && thirdPartyColor" 
+        (click)="continuar()" 
+        class="continue-btn-3 ml-10 algn-r-v3"
+        [ngStyle]="{'background-color' : thirdPartyColor, 'border-color' : thirdPartyColor }"
+        >
+          Firmar
+        </button>
+        <button *ngIf="otros" (click)="continuar()" class="continue-btn-3 ml-10 algn-r-v3"
+          >
+          Enviar
+        </button>
+      </div>
+    </div>
+    <div class="bg-white">
+      <div id="scrollView">
+        <div id="viewer"></div>
+      </div>
+    </div>
+  </div>
+</div>

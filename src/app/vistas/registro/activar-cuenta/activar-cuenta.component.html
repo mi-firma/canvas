@@ -1,0 +1,88 @@
+<div class="log-bar"></div>
+<section class="sec_activ-acount" *ngIf="!isActive">
+    <div class="algn-m">
+        <img src="../../../../../assets/img/icon-mail.svg" alt="icon-mail">
+    </div>
+    <div *ngIf="!toUpdate">
+        <div class="text_activ-acount">
+            <p>
+                Hemos enviado un código de activación de tu cuenta al correo electrónico {{email}}
+            </p>
+        </div>
+        <p class="fs-m mb-10 resend-otp" *ngIf="optResend && OtpSends > 0 && !offButton" (click)="resendOtp()">
+            <span class="click-text cursor-pointer fs-m" >Reenviar correo</span>
+        </p>
+        <p class="resend-otp fs-m mb-10" *ngIf="!optResend && OtpSends > 0">Podrás reenviar otro correo en {{seconds}} segundos</p>
+        <p class="fs-m mt-10" *ngIf="!offButton">
+            <span (click)="toUpdate = true" class="click-text cursor-pointer fs-m">Actualizar correo</span>
+        </p>
+    </div>
+    <div *ngIf="toUpdate">
+        <div class="text_activ-acount">
+            <p>
+                ¿No recibiste el correo de activación? Por favor actualiza la información de tu correo electrónico para
+                que puedas activar tu cuenta.
+            </p>
+        </div>
+        <div (keydown.enter)="update()">
+            <form [formGroup]="formUpdate" autocomplete="off" class="update-form">
+                <div class="form__floating">
+                    <input maxlength="50" autocomplete="email" name="email" type="email" id="correo"
+                        placeholder="Correo electrónico" formControlName="correo">
+                    <label for="correo">Correo electrónico</label>
+                </div>
+                <div [ngClass]="{'inv':!((Email.invalid && Email.touched) || Email.dirty)}">
+                    <small [ngClass]="{'inv':true}" class="text-error">*</small>
+                    <small *ngIf="(Email.errors?.required)" class="text-error">El email es requerido</small>
+                    <small *ngIf="(Email.errors?.email)" class="text-error">El email es inválido</small>
+                </div>
+                <div class="form__floating">
+                    <input maxlength="50" autocomplete="email" name="email" type="email" id="correo2"
+                        placeholder="Confirmar Correo electrónico" formControlName="correo2" onpaste="return false;">
+                    <label for="correo2">Confirmar Correo electrónico</label>
+                </div>
+                <div [ngClass]="{'inv':!((Email2.invalid && Email2.touched) || Email2.dirty)}">
+                    <small [ngClass]="{'inv':true}" class="text-error">*</small>
+                    <small *ngIf="(Email2.errors?.required)" class="text-error">El email es requerido</small>
+                    <small *ngIf="(Email2.errors?.email)" class="text-error">El email es inválido</small>
+                </div>
+            </form>
+        </div>
+        <div class="algn-m-v2 box-options">
+            <button (click)="cancel()" class="form__button continue-btn-4 btn-options">
+                Cancelar
+            </button>
+
+            <button (click)="update()" class="form__button continue-btn-2">
+                Actualizar
+            </button>
+        </div>
+    </div>
+</section>
+
+<section class="sec_activ-acount" *ngIf="isActive && done">
+    <div *ngIf="successActive">
+        <div class="algn-m">
+            <i class="icon icon-correct succes-acount"></i>
+        </div>
+    
+        <div class="text_activ-acount">
+            <p>
+                Tu cuenta ha sido activada correctamente, ya puedes empezar a firmar tus documentos.
+            </p>
+        </div>
+    </div>
+
+    <div *ngIf="!successActive">
+        <div class="algn-m">
+            <i class="icon icon-close wrong-acount"></i>
+        </div>
+    
+        <div class="text_activ-acount">
+            <p>
+                El correo con el que intentas activar la cuenta no es valido.
+            </p>
+        </div>
+    </div>
+    
+</section>

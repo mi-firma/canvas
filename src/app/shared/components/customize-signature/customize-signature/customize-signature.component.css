@@ -1,0 +1,96 @@
+.signature-pad__container {
+  text-align: center;
+}
+
+.text__written__signature {
+  font-size: 60px;
+  color: #000000;
+  word-break: break-all;
+  word-spacing: normal;
+}
+
+.written__signature__container {
+  text-align: center;
+  height: fit-content;
+  padding: 40px;
+  background-color: transparent;
+}
+
+.cdk-overlay-container{
+  z-index: 1051 !important;
+}
+
+.form__written__signature {
+  display: flex;
+  margin-top: 10px;
+}
+
+.form__input__written__signature {
+  width: 48%;
+  height: 32px;
+  border: 1px solid #c8c8c8;
+  overflow: hidden;
+  margin: auto;
+  margin-top: 0px;
+  margin-left: 0px;
+}
+
+.label__accepted__files {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 300;
+  margin-bottom: 20px;
+  text-align: left;
+  word-spacing: normal;
+}
+
+.form__select__font {
+  background: none;
+  width: 48%;
+  height: 32px;
+  margin: auto;
+  margin-right: 0px;
+}
+
+.select__font {
+  width: 100%;
+  height: 32px;
+  text-align: left;
+  border: 1px solid #BEBEBE;
+  border-radius: 5px;
+  padding: 7px;
+  font-family: inherit;
+}
+
+.container__tab {
+  padding: 10px;
+  width: 100%;
+  background-color: transparent;
+}
+
+@media (max-width: 640px) {
+  .text__written__signature {
+    font-size: 18px;
+  }
+
+  .written__signature__container {
+    padding: 20px;
+  }
+
+  .form__written__signature {
+    flex-direction: column;
+  }
+
+  .form__input__written__signature {
+    width: 100%;
+  }
+
+  .form__select__font {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .text__spacing {
+    word-spacing: 1000px;
+  }
+}

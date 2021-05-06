@@ -1,0 +1,74 @@
+.firmador__register {
+    overflow: auto;
+}
+
+.register__left {
+    position: relative;
+    width: 60%;
+    height: 98vh;
+}
+
+.register__cont {
+    position: relative;
+    top: 50vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 600px; 
+}
+
+.register__cont-mov {
+    display: none;
+}
+
+.text-tooltip{
+    text-align: left;
+}
+
+.correct-pass {
+    border-color: green;
+}
+
+.view-pass {
+    position: absolute;
+    top: 12px;
+    left: 90%;
+}
+
+.wrong-pass {
+    border-color: red;
+}
+
+@font-face {
+    font-family: 'password';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://jsbin-user-assets.s3.amazonaws.com/rafaelcastrocouto/password.ttf);
+}
+
+.pass {
+    font-family: 'password';
+}
+
+.pass-view{
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+@media (max-width: 640px) {
+    .register__left {
+        height: auto;
+        width: 100%;
+        padding: 30px 25px 0;
+    }
+
+    .register__cont {
+        display: none; 
+    }
+
+    .register__cont-mov {
+        position: relative;
+        display: initial;
+        margin-top: 10px;
+        padding: 5px;
+    }
+}

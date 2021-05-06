@@ -1,0 +1,68 @@
+.api__section {
+    padding: 0 15% 10%;
+}
+
+.api__header {
+    display: flex;
+    position: relative;
+    border-bottom: 1px solid #d6d5d5;
+    width: 100%;
+}
+
+.api__title {
+    width: 100%;
+    text-align: center;
+    color: #373737;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.home__button {
+    width: 30px;
+    cursor: pointer;
+}
+
+.home__button i {
+    font-size: 30px;
+    color: #9e267d;
+    vertical-align: middle;
+}
+
+.api-info{
+    padding: 5% 10%; 
+}
+
+.form__input{
+    width: 80%;
+    border-radius: 5px 0 0 5px;
+}
+.text-desp{
+    margin-right: 5px;
+}
+
+.menu_desp{
+    color: #0182C4;
+    margin: 20px 0px;
+    font-weight: 500;
+    display: flex;
+    cursor: pointer;
+}
+.text-api{
+    font-weight: 500;
+    margin: 20px 0px;
+}
+
+.text-api a{
+    color: #0182C4;
+    text-decoration: underline !important;
+}
+
+.copy-btn{
+    vertical-align: bottom;
+    height: 40.8px;
+    padding: 10px;
+    border: solid 1px #BEBEBE;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+
+}
